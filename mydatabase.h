@@ -18,6 +18,7 @@ public slots:
     void deleteWorkouts();
     int addWorkout(const QString& day, const QString& workout_name, int sets, int rest);
     bool deleteWorkoutAt(int id);
+    bool deleteWorkoutsOnDay(const QString& day);
     void printTable();
     bool editWorkout(int id, const QString& day, const QString& workout_name, int sets, int rest);
     int countSets(const QString& day);

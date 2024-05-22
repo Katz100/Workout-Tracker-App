@@ -29,22 +29,7 @@ MyDatabase::MyDatabase(QObject *parent)
         qDebug() << "Table init error";
     }
 
-    QSqlQuery q;
-    q.prepare("INSERT INTO Workouts (id, day, workout_name, sets, rest) "
-              "VALUES (NULL, 'Monday', 'Benchpress', 4, 120)");
-    if (q.exec())
-    {
-        qDebug() << "Table pop ok";
-    }
-    else
-    {
-        qDebug() << "Table pop error";
-    }
-    printTable();
-    qDebug() << "Sets: " << countSets("Monday");
-    qDebug() << "Seconds: " << countRest("Monday");
-    deleteWorkoutAt(1);
-    deleteWorkouts();
+
     connect(this, &MyDatabase::workoutsChanged, this, &MyDatabase::printTable);
 
 }
@@ -147,6 +132,26 @@ bool MyDatabase::deleteWorkoutAt(int index)
         qDebug() << "deleteWorkoutIndex() error";
         return false;
     }
+}
+
+bool MyDatabase::deleteWorkoutsOnDay(const QString &day)
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM Workouts WHERE day = ?");
+    query.bindValue(0, day);
+
+    if (query.exec())
+    {
+        qDebug() << "deleteWorkoutsOnDay() ok";
+        emit workoutsChanged();
+        return true;
+    }
+    else
+    {
+        qDebug() << "deleteWorkoutsOnDay() error";
+        return false;
+    }
+
 }
 
 bool MyDatabase::editWorkout(int id, const QString &day, const QString &workout_name, int sets, int rest)
