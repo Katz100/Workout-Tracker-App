@@ -22,6 +22,9 @@ qt_add_qml_module(appWorkout-Tracker-App
         Main.qml
         SOURCES mydatabase.h mydatabase.cpp
         SOURCES mytimer.h mytimer.cpp
+        QML_FILES Home.qml
+        QML_FILES TopBar.qml
+        QML_FILES AddWorkoutMenu.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

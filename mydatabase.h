@@ -17,9 +17,11 @@ public slots:
     QVariantList getWorkouts(const QString& day);
     void deleteWorkouts();
     int addWorkout(const QString& day, const QString& workout_name, int sets, int rest);
-    void deleteWorkoutAt(int id);
+    bool deleteWorkoutAt(int id);
     void printTable();
-    void editWorkout(int id, const QString& day, const QString& workout_name, int sets, int rest);
+    bool editWorkout(int id, const QString& day, const QString& workout_name, int sets, int rest);
+    int countSets(const QString& day);
+    int countRest(const QString& day);
 private:
     QSqlDatabase db_connection;
 };

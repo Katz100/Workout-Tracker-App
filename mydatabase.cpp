@@ -40,9 +40,11 @@ MyDatabase::MyDatabase(QObject *parent)
     {
         qDebug() << "Table pop error";
     }
-
+    printTable();
+    qDebug() << "Sets: " << countSets("Monday");
+    qDebug() << "Seconds: " << countRest("Monday");
     deleteWorkoutAt(1);
-
+    deleteWorkouts();
     connect(this, &MyDatabase::workoutsChanged, this, &MyDatabase::printTable);
 
 }
@@ -129,7 +131,7 @@ int MyDatabase::addWorkout(const QString &day, const QString &workout_name, int 
     }
 }
 
-void MyDatabase::deleteWorkoutAt(int index)
+bool MyDatabase::deleteWorkoutAt(int index)
 {
     QSqlQuery query;
     query.prepare("DELETE FROM Workouts WHERE id = ?");
@@ -138,14 +140,16 @@ void MyDatabase::deleteWorkoutAt(int index)
     {
         qDebug() << "deleteWorkoutIndex() ok";
         emit workoutsChanged();
+        return true;
     }
     else
     {
         qDebug() << "deleteWorkoutIndex() error";
+        return false;
     }
 }
 
-void MyDatabase::editWorkout(int id, const QString &day, const QString &workout_name, int sets, int rest)
+bool MyDatabase::editWorkout(int id, const QString &day, const QString &workout_name, int sets, int rest)
 {
     QSqlQuery query;
     query.prepare("UPDATE Workouts SET day = ?, workout_name = ?, sets = ?, rest = ? WHERE id = ?");
@@ -159,10 +163,47 @@ void MyDatabase::editWorkout(int id, const QString &day, const QString &workout_
     {
         qDebug() << "editWorkout() ok";
         emit workoutsChanged();
+        return true;
     }
     else
     {
         qDebug() << "editWorkout() error";
+        return false;
+    }
+}
+
+int MyDatabase::countSets(const QString &day)
+{
+    QSqlQuery query;
+    query.prepare("SELECT SUM(sets) FROM Workouts WHERE day = ?");
+    query.bindValue(0, day);
+
+    if(query.exec())
+    {
+        qDebug() << "countSets() ok";
+        return query.next() ? query.value(0).toInt() : -1;
+    }
+    else
+    {
+        qDebug() << "countSets() error";
+        return -1;
+    }
+}
+
+int MyDatabase::countRest(const QString &day)
+{
+    QSqlQuery query;
+    query.prepare("SELECT SUM(rest) FROM Workouts WHERE day = ?");
+    query.bindValue(0, day);
+    if (query.exec())
+    {
+        qDebug() << "countRest() ok";
+        return query.next() ? query.value(0).toInt() : -1;
+    }
+    else
+    {
+        qDebug() << "countRest() error";
+        return -1;
     }
 }
 
