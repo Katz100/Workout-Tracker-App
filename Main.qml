@@ -12,6 +12,13 @@ Window {
     color: "#77A6EE"
     visible: true
     title: qsTr("Workout Tracker")
+
+    property var day
+
+    ListModel {
+        id: lm
+    }
+
     TopBar {
         id: topBar
     }
@@ -26,6 +33,6 @@ Window {
         }
        source: "Home.qml"
     }
-
-
 }
+
+

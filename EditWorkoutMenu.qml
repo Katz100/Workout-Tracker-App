@@ -3,11 +3,10 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Dialogs
 import com.company.mydatabase
+import "ListModelFunctions.js" as Backend
 
 Rectangle {
     color: "green"
-
-    property var day
 
     ColumnLayout {
         id: col
@@ -34,7 +33,11 @@ Rectangle {
             Button {
                 text: modelData
                 implicitWidth: deleteAllButton.implicitWidth
-                onClicked: day = modelData
+                onClicked: {
+                    day = modelData
+                    loader.source = "EditWorkoutPage.qml"
+                    Backend.getWorkouts(day)
+                }
             }
         }
 
