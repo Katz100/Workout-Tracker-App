@@ -21,7 +21,6 @@ Rectangle {
 
         MessageDialog {
             id: msg
-            text: "Deleting workouts."
             informativeText: "Are you sure you want to delete all workouts?"
             buttons: MessageDialog.Yes | MessageDialog.No
             onAccepted: Database.deleteWorkouts()

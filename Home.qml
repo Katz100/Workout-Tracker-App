@@ -13,18 +13,18 @@ Rectangle {
         anchors.centerIn: parent
         Button {
             text: "Start Workout"
-            Layout.preferredWidth: 100
+            Layout.preferredWidth: 200
         }
 
         Button {
-            text: "Edit Workout"
-            Layout.preferredWidth: 100
+            text: "View/Edit Workout(s)"
+            Layout.preferredWidth: 200
             onClicked: loader.source = "EditWorkoutMenu.qml"
         }
 
         Button {
-            text: "Add Workout"
-            Layout.preferredWidth: 100
+            text: "Add Workout(s)"
+            Layout.preferredWidth: 200
             onClicked: loader.source = "AddWorkoutMenu.qml"
 
         }
