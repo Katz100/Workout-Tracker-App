@@ -1,5 +1,7 @@
 import QtQuick
 import QtQuick.Controls
+import "ListModelFunctions.js" as Backend
+import com.company.mydatabase
 
 Rectangle {
     color: "cyan"
@@ -51,6 +53,12 @@ Rectangle {
             text: "Back"
 
             onClicked: loader.source = "EditWorkoutMenu.qml"
+        }
+
+        Text {
+            anchors.centerIn: parent
+            text: "<b>Estimated workout time: " + Backend.estimateWorkout(day) + "</b>"
+            font.pointSize: 16
         }
     }
 }

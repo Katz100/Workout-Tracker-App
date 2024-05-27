@@ -2,9 +2,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import com.company.mytimer
-import com.company.mydatabase
-
 Window {
     id: root
     width: 360
