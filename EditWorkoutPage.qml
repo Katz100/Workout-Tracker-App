@@ -20,6 +20,25 @@ Rectangle {
                 width: sv.width
                 height: 100
 
+                Image {
+                    source: "images/trashcan.jpg"
+                    width: 30
+                    height: 30
+
+                    anchors {
+                        right: parent.right
+                        rightMargin: 20
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            Database.deleteWorkoutAt(id)
+                            lm.remove(index)
+                        }
+                    }
+                }
+
                 Text {
                     id: lmIndex
                     text: index + 1
@@ -58,7 +77,7 @@ Rectangle {
         Text {
             anchors.centerIn: parent
             text: "<b>Estimated workout time: " + Backend.estimateWorkout(day) + "</b>"
-            font.pointSize: 16
+            font.pointSize: 14
         }
     }
 }

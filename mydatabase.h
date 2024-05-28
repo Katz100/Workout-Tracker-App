@@ -23,6 +23,7 @@ public slots:
     bool editWorkout(int id, const QString& day, const QString& workout_name, int sets, int rest);
     int countSets(const QString& day);
     int countRest(const QString& day);
+    int findAverage(const QString& day);
 private:
     QSqlDatabase db_connection;
 };

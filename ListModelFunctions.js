@@ -10,7 +10,6 @@ function getWorkouts(day) {
 
 function estimateWorkout(day) {
     let sets = Database.countSets(day);
-    let rest = Database.countRest(day);
-    //TODO: write database method to find average rest times
+    let rest = Database.findAverage(day);
     return sets * (rest/60);
 }

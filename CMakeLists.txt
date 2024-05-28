@@ -28,6 +28,9 @@ qt_add_qml_module(appWorkout-Tracker-App
         QML_FILES EditWorkoutMenu.qml
         QML_FILES EditWorkoutPage.qml
         QML_FILES ListModelFunctions.js
+        RESOURCES
+        images/edit.png
+        images/trashcan.jpg
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

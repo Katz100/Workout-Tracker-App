@@ -212,3 +212,21 @@ int MyDatabase::countRest(const QString &day)
     }
 }
 
+int MyDatabase::findAverage(const QString &day)
+{
+    QSqlQuery query;
+    query.prepare("SELECT avg(rest) FROM Workouts WHERE day = ?");
+    query.bindValue(0, day);
+
+    if (query.exec())
+    {
+        qDebug() << "findAverage() ok";
+        return query.next() ? query.value(0).toInt() : -1;
+    }
+    else
+    {
+        qDebug() << "finAverage() error";
+        return -1;
+    }
+}
+
