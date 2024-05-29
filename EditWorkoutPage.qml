@@ -5,10 +5,15 @@ import com.company.mydatabase
 
 Rectangle {
     color: "cyan"
+    property real workoutTime: Backend.estimateWorkout(day)
 
     EditDialog {
         id: editDialog
-        onOkPressed: Backend.getWorkouts(day)
+        //TODO: update specifed workout instead of clearing and retrieving all workouts
+        onOkPressed: {
+            workoutTime = Backend.estimateWorkout(day)
+            Backend.getWorkouts(day)
+        }
         anchors.centerIn: parent
     }
 
@@ -110,7 +115,7 @@ Rectangle {
 
         Text {
             anchors.centerIn: parent
-            text: "<b>Estimated workout time: " + Backend.estimateWorkout(day) + "</b>"
+            text: "<b>Estimated workout time: " + workoutTime + "</b>"
             font.pointSize: 14
         }
     }
