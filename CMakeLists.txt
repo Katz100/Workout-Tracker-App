@@ -31,6 +31,7 @@ qt_add_qml_module(appWorkout-Tracker-App
         RESOURCES
         images/edit.png
         images/trashcan.jpg
+        QML_FILES EditDialog.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

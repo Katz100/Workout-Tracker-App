@@ -5,6 +5,13 @@ import com.company.mydatabase
 
 Rectangle {
     color: "cyan"
+
+    EditDialog {
+        id: editDialog
+        onOkPressed: Backend.getWorkouts(day)
+        anchors.centerIn: parent
+    }
+
     ScrollView {
         id: sv
         width: parent.width
@@ -21,6 +28,7 @@ Rectangle {
                 height: 100
 
                 Image {
+                    id: trashcan
                     source: "images/trashcan.jpg"
                     width: 30
                     height: 30
@@ -35,6 +43,32 @@ Rectangle {
                         onClicked: {
                             Database.deleteWorkoutAt(id)
                             lm.remove(index)
+                        }
+                    }
+                }
+
+                Image {
+                    id: edit
+                    source: "images/edit.png"
+                    width: 30
+                    height: 30
+
+                    anchors {
+                        right: parent.right
+                        top: trashcan.bottom
+                        rightMargin: 20
+                        topMargin: 10
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            editDialog.day = day
+                            editDialog.id = id
+                            editDialog.workoutName = workout_name
+                            editDialog.sets = sets
+                            editDialog.rest = rest
+                            editDialog.open()
                         }
                     }
                 }
@@ -80,4 +114,6 @@ Rectangle {
             font.pointSize: 14
         }
     }
+
+
 }
