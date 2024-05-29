@@ -32,6 +32,7 @@ qt_add_qml_module(appWorkout-Tracker-App
         images/edit.png
         images/trashcan.jpg
         QML_FILES EditDialog.qml
+        QML_FILES StartWorkoutMenu.qml
         QML_FILES StartWorkoutPage.qml
 )
 

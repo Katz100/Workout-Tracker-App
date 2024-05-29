@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
-
+import "ListModelFunctions.js" as Backend
+import com.company.mytimer
 
 Rectangle {
     id: topBar
@@ -22,6 +23,11 @@ Rectangle {
 
         text: "Home"
 
-        onClicked: loader.source = "Home.qml"
+        onClicked: {
+            lm.clear()
+            MyTimer.resetTimer()
+            Backend.resetWorkout()
+            loader.source = "Home.qml"
+        }
     }
 }

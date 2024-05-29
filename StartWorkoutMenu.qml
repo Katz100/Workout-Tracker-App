@@ -1,46 +1,30 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Dialogs
 import com.company.mydatabase
+import com.company.mytimer
 import "ListModelFunctions.js" as Backend
 
 Rectangle {
-    color: "green"
+    color: "orange"
 
     ColumnLayout {
         id: col
-        spacing: 20
         anchors.centerIn: parent
-
-        Button {
-            id: deleteAllButton
-            text: "Delete All Workouts"
-            onClicked: msg.open()
-        }
-
-        MessageDialog {
-            id: msg
-            informativeText: "Are you sure you want to delete all workouts?"
-            buttons: MessageDialog.Yes | MessageDialog.No
-            onAccepted: Database.deleteWorkouts()
-        }
-
+        spacing: 20
         Repeater {
             id: repeater
             model: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
             Button {
                 text: modelData
-                implicitWidth: deleteAllButton.implicitWidth
+                implicitWidth: 100
                 onClicked: {
                     day = modelData
-                    loader.source = "EditWorkoutPage.qml"
                     Backend.getWorkouts(day)
-
+                    loader.source = "StartWorkoutPage.qml"
                 }
             }
         }
-
     }
 
 }

@@ -36,7 +36,7 @@ public slots:
 
 
 private:
-    int m_seconds = 5;
+    int m_seconds = 0;
     bool m_pause_timer = false;
     QTimer m_timer;
 

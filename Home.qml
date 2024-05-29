@@ -14,7 +14,7 @@ Rectangle {
         Button {
             text: "Start Workout"
             Layout.preferredWidth: 200
-            onClicked: loader.source = "StartWorkoutPage.qml"
+            onClicked: loader.source = "StartWorkoutMenu.qml"
         }
 
         Button {

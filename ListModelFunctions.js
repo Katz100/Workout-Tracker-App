@@ -1,4 +1,4 @@
-let currentWorkoutIndex = 1;
+let currentWorkoutIndex = 0;
 let currentSet = 1
 
 function nextSet() {
