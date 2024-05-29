@@ -7,13 +7,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
 
 qt_standard_project_setup()
-find_package(Qt6 REQUIRED COMPONENTS Sql)
+find_package(Qt6 REQUIRED COMPONENTS Sql Multimedia)
+find_package(Qt6 REQUIRED COMPONENTS Multimedia)
 
 qt_add_executable(appWorkout-Tracker-App
     main.cpp
 )
 
 target_link_libraries(appWorkout-Tracker-App PRIVATE Qt6::Sql)
+target_link_libraries(appWorkout-Tracker-App PRIVATE Qt6::Multimedia)
+
 
 qt_add_qml_module(appWorkout-Tracker-App
     URI Workout-Tracker-App
@@ -31,6 +34,7 @@ qt_add_qml_module(appWorkout-Tracker-App
         RESOURCES
         images/edit.png
         images/trashcan.jpg
+        audio/timer-sound.mp3
         QML_FILES EditDialog.qml
         QML_FILES StartWorkoutMenu.qml
         QML_FILES StartWorkoutPage.qml

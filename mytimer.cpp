@@ -1,11 +1,17 @@
 #include "mytimer.h"
-#include <QDebug>
 
 MyTimer::MyTimer(QObject *parent)
     : QObject{parent}
 {
     connect(&m_timer, &QTimer::timeout, this, &MyTimer::updateTimer);
     m_timer.setInterval(1000);
+
+    m_player = new QMediaPlayer(this);
+    m_audio = new QAudioOutput(this);
+    m_player->setAudioOutput(m_audio);
+    m_player->setSource(QUrl::fromLocalFile("Workout-Tracker-App/audio/timer-sound.mp3"));
+    m_audio->setVolume(50);
+
 }
 
 void MyTimer::resetTimer()
@@ -13,7 +19,6 @@ void MyTimer::resetTimer()
     m_timer.stop();
     m_seconds = 0;
     emit secondsChanged();
-    qDebug() << "Timer resetted";
 }
 
 void MyTimer::setTimer(int seconds)
@@ -21,7 +26,6 @@ void MyTimer::setTimer(int seconds)
     m_seconds = seconds;
     emit secondsChanged();
     m_timer.start();
-    qDebug() << "Timer started";
 }
 
 void MyTimer::pauseStartTimer()
@@ -31,12 +35,10 @@ void MyTimer::pauseStartTimer()
     if (m_pause_timer)
     {
         m_timer.stop();
-        qDebug() << "Timer paused";
     }
     else
     {
         m_timer.start();
-        qDebug() << "Time resumed";
     }
 }
 
@@ -44,12 +46,11 @@ void MyTimer::updateTimer()
 {
     --m_seconds;
     emit secondsChanged();
-    qDebug() << "Tick";
     if (m_seconds <= 0)
     {
         m_timer.stop();
+        m_player->play();
         m_seconds = 0;
-        qDebug() << "Timer ended";
         emit secondsChanged();
     }
 }
