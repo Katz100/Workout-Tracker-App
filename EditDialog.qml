@@ -34,7 +34,6 @@ Dialog {
     }
 
     onAccepted: {
-        console.log("id: " + id)
         Database.editWorkout(id, day, wf.text, parseInt(sf.text), parseInt(rf.text))
         root.okPressed()
     }

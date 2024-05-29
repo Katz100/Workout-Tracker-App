@@ -1,3 +1,23 @@
+let currentWorkoutIndex = 1;
+let currentSet = 1
+
+function nextSet() {
+    currentSet++;
+    if (currentSet > lm.get(currentWorkoutIndex).sets)
+    {
+        currentSet = 1;
+        currentWorkoutIndex++
+    }
+}
+
+function isWorkoutFinished() {
+    return currentWorkoutIndex > lm.count
+}
+
+function resetWorkout() {
+    currentWorkoutIndex = 1;
+    currentSet = 1;
+}
 
 function getWorkouts(day) {
     lm.clear()

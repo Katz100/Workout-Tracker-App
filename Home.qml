@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import "ListModelFunctions.js" as Backend
+
 Rectangle {
     color: "red"
     Text {
@@ -14,6 +14,7 @@ Rectangle {
         Button {
             text: "Start Workout"
             Layout.preferredWidth: 200
+            onClicked: loader.source = "StartWorkoutPage.qml"
         }
 
         Button {
