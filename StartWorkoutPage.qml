@@ -3,6 +3,8 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import com.company.mydatabase
 import com.company.mytimer
+import QtMultimedia
+
 import "ListModelFunctions.js" as Backend
 
 Rectangle {
@@ -32,6 +34,18 @@ Rectangle {
             text: "Start Timer"
             Layout.preferredWidth: 200
             onClicked: MyTimer.setTimer(currentRest)
+
+            MediaPlayer {
+                id: playSound
+                source: "audio/timer-sound.mp3"
+                audioOutput: AudioOutput {}
+            }
+            Connections {
+                target: MyTimer
+                function onTimerFinished() {
+                    playSound.play()
+                }
+            }
         }
 
         Button {
@@ -47,4 +61,7 @@ Rectangle {
             }
         }
     }
+
 }
+
+

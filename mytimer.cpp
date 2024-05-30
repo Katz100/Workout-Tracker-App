@@ -6,12 +6,6 @@ MyTimer::MyTimer(QObject *parent)
     connect(&m_timer, &QTimer::timeout, this, &MyTimer::updateTimer);
     m_timer.setInterval(1000);
 
-    m_player = new QMediaPlayer(this);
-    m_audio = new QAudioOutput(this);
-    m_player->setAudioOutput(m_audio);
-    m_player->setSource(QUrl::fromLocalFile("Workout-Tracker-App/audio/timer-sound.mp3"));
-    m_audio->setVolume(50);
-
 }
 
 void MyTimer::resetTimer()
@@ -49,7 +43,7 @@ void MyTimer::updateTimer()
     if (m_seconds <= 0)
     {
         m_timer.stop();
-        m_player->play();
+        emit timerFinished();
         m_seconds = 0;
         emit secondsChanged();
     }

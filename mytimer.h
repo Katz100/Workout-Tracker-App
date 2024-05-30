@@ -3,8 +3,6 @@
 
 #include <QObject>
 #include <QTimer>
-#include <QMediaPlayer>
-#include <QAudioOutput>
 
 class MyTimer : public QObject
 {
@@ -25,7 +23,7 @@ public:
 
 signals:
     void secondsChanged();
-
+    void timerFinished();
     void pause_timerChanged();
 
 
@@ -41,8 +39,6 @@ private:
     int m_seconds = 0;
     bool m_pause_timer = false;
     QTimer m_timer;
-    QMediaPlayer* m_player;
-    QAudioOutput* m_audio;
 };
 
 #endif // MYTIMER_H
