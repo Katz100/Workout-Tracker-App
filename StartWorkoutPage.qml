@@ -56,8 +56,6 @@ Rectangle {
             onClicked: {
                 Backend.nextSet()
                 MyTimer.resetTimer()
-                console.log("Count: " + lm.count)
-                console.log("Index: " + Backend.currentWorkoutIndex)
                 if (Backend.isWorkoutFinished()) {
                     workoutFinishedDialog.open()
                 } else {
