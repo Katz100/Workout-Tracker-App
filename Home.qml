@@ -3,10 +3,8 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Rectangle {
-    color: "red"
-    Text {
-        text: "Home page"
-    }
+    color: "#77A6EE"
+
 
     ColumnLayout {
         spacing: 20

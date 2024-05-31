@@ -6,7 +6,7 @@ import com.company.mydatabase
 import "ListModelFunctions.js" as Backend
 
 Rectangle {
-    color: "green"
+    color: "#77A6EE"
 
     ColumnLayout {
         id: col
@@ -28,7 +28,7 @@ Rectangle {
 
         Repeater {
             id: repeater
-            model: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+            model: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
             Button {
                 text: modelData
                 implicitWidth: deleteAllButton.implicitWidth

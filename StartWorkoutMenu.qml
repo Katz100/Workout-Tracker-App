@@ -6,7 +6,7 @@ import com.company.mytimer
 import "ListModelFunctions.js" as Backend
 
 Rectangle {
-    color: "orange"
+    color: "#77A6EE"
 
     ColumnLayout {
         id: col
@@ -17,7 +17,7 @@ Rectangle {
             model: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
             Button {
                 text: modelData
-                implicitWidth: 100
+                implicitWidth: 200
                 onClicked: {
                     day = modelData
                     Backend.getWorkouts(day)

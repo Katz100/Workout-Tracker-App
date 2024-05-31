@@ -8,7 +8,7 @@ import QtMultimedia
 import "ListModelFunctions.js" as Backend
 
 Rectangle {
-    color: "lightgrey"
+    color: "#77A6EE"
     property var currentWorkout: lm.get(Backend.currentWorkoutIndex).workout_name
     property int currentSet: Backend.currentSet
     property int currentRest: lm.get(Backend.currentWorkoutIndex).rest

@@ -4,12 +4,11 @@ import "ListModelFunctions.js" as Backend
 import com.company.mydatabase
 
 Rectangle {
-    color: "cyan"
+    color: "#77A6EE"
     property real workoutTime: Backend.estimateWorkout(day)
 
     EditDialog {
         id: editDialog
-        //TODO: update specifed workout instead of clearing and retrieving all workouts
         onOkPressed: {
             workoutTime = Backend.estimateWorkout(day)
             Backend.getWorkouts(day)
@@ -48,6 +47,7 @@ Rectangle {
                         onClicked: {
                             Database.deleteWorkoutAt(id)
                             lm.remove(index)
+                            workoutTime = Backend.estimateWorkout(day)
                         }
                     }
                 }
@@ -119,6 +119,4 @@ Rectangle {
             font.pointSize: 14
         }
     }
-
-
 }

@@ -1,11 +1,13 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Dialogs
 import com.company.mydatabase
 
 Rectangle {
-    color: "purple"
+    color: "#77A6EE"
 
+    property bool isFine: true
    ColumnLayout {
        id: col
        spacing: 20
@@ -13,22 +15,24 @@ Rectangle {
         ComboBox {
             id: day
             model: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-            Layout.preferredWidth: 200
+            Layout.preferredWidth: 250
         }
         TextField {
             id: workoutName
             placeholderText: "Name of workout"
-            Layout.preferredWidth: 200
+            Layout.preferredWidth: 250
         }
         TextField {
             id: sets
             placeholderText: "Number of sets"
-            Layout.preferredWidth: 200
+            Layout.preferredWidth: 250
+            validator: IntValidator{bottom: 1; top: 999;}
         }
         TextField {
             id: rest
             placeholderText: "Number of rest in seconds"
-            Layout.preferredWidth: 200
+            Layout.preferredWidth: 250
+            validator: IntValidator{bottom: 1; top: 999;}
         }
     }
 
@@ -48,8 +52,22 @@ Rectangle {
            id: addWorkoutButton
            text: "Add Workout"
            onClicked: {
+               if (workoutName.length == 0 || sets.length == 0 ) {
+                   isFine = false
+                   okDialog.open()
+               }
+               else {
                Database.addWorkout(day.currentText, workoutName.text, parseInt(sets.text), parseInt(rest.text));
+                   isFine = true
+                   okDialog.open()
+               }
            }
+       }
+       MessageDialog {
+          id: okDialog
+          text: isFine ? "Workout added." : "Error adding workout."
+          buttons: MessageDialog.Ok
+          onAccepted: close()
        }
    }
 }
