@@ -11,7 +11,7 @@ function nextSet() {
 }
 
 function isWorkoutFinished() {
-    return currentWorkoutIndex > lm.count
+    return currentWorkoutIndex >= lm.count
 }
 
 function resetWorkout() {
@@ -32,4 +32,8 @@ function estimateWorkout(day) {
     let sets = Database.countSets(day);
     let rest = Database.findAverage(day);
     return (sets * (rest/60)).toFixed(2);
+}
+
+function isEmpty() {
+    return (lm.count == 0)
 }

@@ -34,13 +34,24 @@ Rectangle {
                 implicitWidth: deleteAllButton.implicitWidth
                 onClicked: {
                     day = modelData
-                    loader.source = "EditWorkoutPage.qml"
                     Backend.getWorkouts(day)
+                    if (Backend.isEmpty()) {
+                        workoutEmptyDialog.open()
+                    } else {
+                        loader.source = "EditWorkoutPage.qml"
+                    }
 
                 }
             }
         }
 
+    }
+
+    MessageDialog {
+        id: workoutEmptyDialog
+        text: "No workouts on this day."
+        buttons: MessageDialog.Ok
+        onAccepted: close()
     }
 
 }

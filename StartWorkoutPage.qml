@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Dialogs
 import com.company.mydatabase
 import com.company.mytimer
 import QtMultimedia
@@ -55,13 +56,28 @@ Rectangle {
             onClicked: {
                 Backend.nextSet()
                 MyTimer.resetTimer()
+                console.log("Count: " + lm.count)
+                console.log("Index: " + Backend.currentWorkoutIndex)
+                if (Backend.isWorkoutFinished()) {
+                    workoutFinishedDialog.open()
+                } else {
                 currentWorkout = lm.get(Backend.currentWorkoutIndex).workout_name
                 currentSet = Backend.currentSet
                 currentRest = lm.get(Backend.currentWorkoutIndex).rest
+                }
             }
         }
     }
 
+    MessageDialog {
+        id: workoutFinishedDialog
+        text: "Workout Finished!"
+        buttons: MessageDialog.Ok
+        onAccepted: {
+            loader.source = "Home.qml"
+            close()
+        }
+    }
 }
 
 
