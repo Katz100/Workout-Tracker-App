@@ -34,6 +34,8 @@ qt_add_qml_module(appWorkout-Tracker-App
         RESOURCES
         images/edit.png
         images/trashcan.jpg
+        images/icons8-play-48.png
+        images/icons8-pause-button-64.png
         audio/timer-sound.mp3
         QML_FILES EditDialog.qml
         QML_FILES StartWorkoutMenu.qml

@@ -30,38 +30,67 @@ Rectangle {
             text: MyTimer.seconds
         }
 
-        Button {
-            id: startTimerButton
-            text: "Start Timer"
-            Layout.preferredWidth: 200
-            onClicked: MyTimer.setTimer(currentRest)
+        GridLayout {
+            rows: 2
+            columns: 2
+            Button {
+                id: startTimerButton
+                text: "Start Timer"
+                Layout.preferredWidth: 150
+                onClicked: {
+                    MyTimer.setTimer(currentRest)
+                    MyTimer.pause_timer = false
+                }
 
-            MediaPlayer {
-                id: playSound
-                source: "audio/timer-sound.mp3"
-                audioOutput: AudioOutput {}
-            }
-            Connections {
-                target: MyTimer
-                function onTimerFinished() {
-                    playSound.play()
+                MediaPlayer {
+                    id: playSound
+                    source: "audio/timer-sound.mp3"
+                    audioOutput: AudioOutput {}
+                }
+                Connections {
+                    target: MyTimer
+                    function onTimerFinished() {
+                        playSound.play()
+                        Backend.nextSet()
+                        MyTimer.resetTimer()
+                        if (Backend.isWorkoutFinished()) {
+                            workoutFinishedDialog.open()
+                        } else {
+                            currentWorkout = lm.get(Backend.currentWorkoutIndex).workout_name
+                            currentSet = Backend.currentSet
+                            currentRest = lm.get(Backend.currentWorkoutIndex).rest
+                        }
+                    }
                 }
             }
-        }
 
-        Button {
-            id: nextSetButton
-            text: "Next Set"
-            Layout.preferredWidth: 200
-            onClicked: {
-                Backend.nextSet()
-                MyTimer.resetTimer()
-                if (Backend.isWorkoutFinished()) {
-                    workoutFinishedDialog.open()
-                } else {
-                currentWorkout = lm.get(Backend.currentWorkoutIndex).workout_name
-                currentSet = Backend.currentSet
-                currentRest = lm.get(Backend.currentWorkoutIndex).rest
+            Button {
+                id: pauseTimerButton
+                icon.source: MyTimer.pause_timer? "images/icons8-play-48.png" : "images/icons8-pause-button-64.png"
+                Layout.preferredWidth: 150
+                onClicked: MyTimer.pauseStartTimer()
+            }
+
+            Button {
+                id: previousSetButton
+                text: "Previous Set"
+                Layout.preferredWidth: 150
+            }
+
+            Button {
+                id: nextSetButton
+                text: "Next Set"
+                Layout.preferredWidth: 150
+                onClicked: {
+                    Backend.nextSet()
+                    MyTimer.resetTimer()
+                    if (Backend.isWorkoutFinished()) {
+                        workoutFinishedDialog.open()
+                    } else {
+                        currentWorkout = lm.get(Backend.currentWorkoutIndex).workout_name
+                        currentSet = Backend.currentSet
+                        currentRest = lm.get(Backend.currentWorkoutIndex).rest
+                    }
                 }
             }
         }
