@@ -75,6 +75,13 @@ Rectangle {
                 id: previousSetButton
                 text: "Previous Set"
                 Layout.preferredWidth: 150
+                onClicked: {
+                    Backend.previousSet()
+                    MyTimer.resetTimer()
+                    currentWorkout = lm.get(Backend.currentWorkoutIndex).workout_name
+                    currentSet = Backend.currentSet
+                    currentRest = lm.get(Backend.currentWorkoutIndex).rest
+                }
             }
 
             Button {
@@ -82,7 +89,9 @@ Rectangle {
                 text: "Next Set"
                 Layout.preferredWidth: 150
                 onClicked: {
-                    Backend.nextSet()
+                    if (!Backend.isWorkoutFinished()){
+                        Backend.nextSet()
+                    }
                     MyTimer.resetTimer()
                     if (Backend.isWorkoutFinished()) {
                         workoutFinishedDialog.open()

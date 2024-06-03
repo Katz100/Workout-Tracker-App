@@ -10,6 +10,22 @@ function nextSet() {
     }
 }
 
+function previousSet() {
+    currentSet--;
+    if (currentSet == 0)
+    {
+        if (currentWorkoutIndex != 0)
+        {
+            currentWorkoutIndex--;
+            currentSet = lm.get(currentWorkoutIndex).sets
+        } else if (currentWorkoutIndex == 0 && currentSet == 0){
+            currentSet = 1;
+        } else {
+            currentSet = lm.get(currentWorkoutIndex).sets;
+        }
+    }
+}
+
 function isWorkoutFinished() {
     return currentWorkoutIndex >= lm.count
 }
