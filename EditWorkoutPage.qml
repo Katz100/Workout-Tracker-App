@@ -11,7 +11,8 @@ Rectangle {
         id: editDialog
         onOkPressed: {
             workoutTime = Backend.estimateWorkout(day)
-            Backend.getWorkouts(day)
+            var updatedWorkout = Database.findWorkout(editDialog.id)
+            Backend.updateListModel(editDialog.index, updatedWorkout)
         }
         anchors.centerIn: parent
     }
@@ -30,6 +31,8 @@ Rectangle {
                 border.width: 2
                 width: sv.width
                 height: 100
+
+
 
                 Image {
                     id: trashcan
@@ -68,6 +71,7 @@ Rectangle {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
+                            editDialog.index = lv.currentIndex
                             editDialog.day = day
                             editDialog.id = id
                             editDialog.workoutName = workout_name

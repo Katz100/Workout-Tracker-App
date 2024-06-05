@@ -80,6 +80,32 @@ QVariantList MyDatabase::getWorkouts(const QString& day)
     return workouts;
 }
 
+QVariantMap MyDatabase::findWorkout(int id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Workouts WHERE id = ?");
+    query.bindValue(0, id);
+
+    if (query.exec())
+    {
+        qDebug() << "findWorkout() ok";
+    }
+    else
+    {
+        qDebug() << "findWorkout() error";
+    }
+    QVariantMap workout;
+    while (query.next())
+    {
+        workout.insert("id", query.value("id"));
+        workout.insert("day", query.value("day"));
+        workout.insert("workout_name", query.value("workout_name"));
+        workout.insert("sets", query.value("sets"));
+        workout.insert("rest", query.value("rest"));
+    }
+    return workout;
+}
+
 void MyDatabase::deleteWorkouts()
 {
     QSqlQuery query;

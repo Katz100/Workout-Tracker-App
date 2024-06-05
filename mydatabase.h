@@ -15,6 +15,7 @@ signals:
     void workoutsChanged();
 public slots:
     QVariantList getWorkouts(const QString& day);
+    QVariantMap findWorkout(int id);
     void deleteWorkouts();
     int addWorkout(const QString& day, const QString& workout_name, int sets, int rest);
     bool deleteWorkoutAt(int id);

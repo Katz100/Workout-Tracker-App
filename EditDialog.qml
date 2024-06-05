@@ -6,6 +6,7 @@ import com.company.mydatabase
 
 Dialog {
     id: root
+    property int index: -1
     property int id: -1
     property string day: "N/A"
     property alias workoutName: wf.text

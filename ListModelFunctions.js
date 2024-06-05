@@ -44,6 +44,10 @@ function getWorkouts(day) {
     }
 }
 
+function updateListModel(index, newWorkout) {
+    lm.set(index, newWorkout)
+}
+
 function estimateWorkout(day) {
     let sets = Database.countSets(day);
     let rest = Database.findAverage(day);
@@ -53,3 +57,5 @@ function estimateWorkout(day) {
 function isEmpty() {
     return (lm.count == 0)
 }
+
+
