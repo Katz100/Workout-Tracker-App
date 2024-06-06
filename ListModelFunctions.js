@@ -26,6 +26,21 @@ function previousSet() {
     }
 }
 
+function previousWorkout() {
+    if (currentWorkoutIndex == 0) {
+        return "N/A"
+    } else {
+        return lm.get(currentWorkoutIndex-1).workout_name
+    }
+}
+function nextWorkout() {
+    if (currentWorkoutIndex == lm.count-1) {
+        return "N/A"
+    } else {
+        return lm.get(currentWorkoutIndex+1).workout_name
+    }
+}
+
 function isWorkoutFinished() {
     return currentWorkoutIndex >= lm.count
 }

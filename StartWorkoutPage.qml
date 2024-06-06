@@ -11,23 +11,50 @@ import "ListModelFunctions.js" as Backend
 Rectangle {
     color: "#77A6EE"
     property var currentWorkout: lm.get(Backend.currentWorkoutIndex).workout_name
+    property var previousWorkout: Backend.previousWorkout()
+    property var nextWorkout: Backend.nextWorkout()
     property int currentSet: Backend.currentSet
     property int currentRest: lm.get(Backend.currentWorkoutIndex).rest
     ColumnLayout {
         id: col
         spacing: 30
         anchors.centerIn: parent
-        Text {
-            id: currentWorkoutTxt
-            text: currentWorkout
-        }
-        Text {
-            id: setsTxt
-            text: "Set: " + currentSet
-        }
-        Text {
-            id: timerText
-            text: MyTimer.seconds
+        GridLayout {
+            rowSpacing: 30
+            rows: 3
+            columns: 3
+            Text {
+                id: previousExercise
+                text: "Previous:\n" + previousWorkout
+                color: "gray"
+                Layout.fillWidth: true
+            }
+
+            Text {
+                id: currentWorkoutTxt
+                text: currentWorkout
+                Layout.fillWidth: true
+            }
+
+            Text {
+                id: nexExercise
+                text: "Next:\n" + nextWorkout
+                color: "gray"
+                Layout.fillWidth: true
+            }
+
+            Text {
+                id: setsTxt
+                text: "Set: " + currentSet
+                Layout.columnSpan: 3
+                Layout.alignment: Qt.AlignCenter
+            }
+            Text {
+                id: timerText
+                text: MyTimer.seconds
+                Layout.columnSpan: 3
+                Layout.alignment: Qt.AlignCenter
+            }
         }
 
         GridLayout {
@@ -56,9 +83,7 @@ Rectangle {
                         if (Backend.isWorkoutFinished()) {
                             workoutFinishedDialog.open()
                         } else {
-                            currentWorkout = lm.get(Backend.currentWorkoutIndex).workout_name
-                            currentSet = Backend.currentSet
-                            currentRest = lm.get(Backend.currentWorkoutIndex).rest
+                            updateText()
                         }
                     }
                 }
@@ -78,9 +103,7 @@ Rectangle {
                 onClicked: {
                     Backend.previousSet()
                     MyTimer.resetTimer()
-                    currentWorkout = lm.get(Backend.currentWorkoutIndex).workout_name
-                    currentSet = Backend.currentSet
-                    currentRest = lm.get(Backend.currentWorkoutIndex).rest
+                    updateText()
                 }
             }
 
@@ -96,9 +119,7 @@ Rectangle {
                     if (Backend.isWorkoutFinished()) {
                         workoutFinishedDialog.open()
                     } else {
-                        currentWorkout = lm.get(Backend.currentWorkoutIndex).workout_name
-                        currentSet = Backend.currentSet
-                        currentRest = lm.get(Backend.currentWorkoutIndex).rest
+                        updateText()
                     }
                 }
             }
@@ -113,6 +134,14 @@ Rectangle {
             loader.source = "Home.qml"
             close()
         }
+    }
+
+    function updateText() {
+        currentWorkout = lm.get(Backend.currentWorkoutIndex).workout_name
+        currentSet = Backend.currentSet
+        currentRest = lm.get(Backend.currentWorkoutIndex).rest
+        previousWorkout = Backend.previousWorkout()
+        nextWorkout = Backend.nextWorkout()
     }
 }
 
