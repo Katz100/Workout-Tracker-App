@@ -49,8 +49,8 @@ Rectangle {
                         anchors.fill: parent
                         onClicked: {
                             Database.deleteWorkoutAt(id)
-                            lm.remove(index)
                             workoutTime = Backend.estimateWorkout(day)
+                            lm.remove(index)
                         }
                     }
                 }
