@@ -21,7 +21,7 @@ Rectangle {
             leftMargin: 10
         }
 
-        text: "Home"
+        icon.source: "images/icons8-home-24.png"
 
         onClicked: {
             lm.clear()
