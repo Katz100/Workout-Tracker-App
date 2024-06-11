@@ -32,6 +32,7 @@ qt_add_qml_module(appWorkout-Tracker-App
         QML_FILES EditWorkoutMenu.qml
         QML_FILES EditWorkoutPage.qml
         QML_FILES ListModelFunctions.js
+        QML_FILES CircularSlider.qml
         RESOURCES
         images/edit.png
         images/trashcan.jpg
