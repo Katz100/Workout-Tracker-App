@@ -24,7 +24,7 @@ Rectangle {
         ListView {
             id: lv
             anchors.fill: parent
-
+            spacing: 1
             model: lm
             delegate: Rectangle {
                 color: "lightblue"
@@ -71,6 +71,8 @@ Rectangle {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
+                            //  delegate index
+                            lv.currentIndex = index
                             editDialog.index = lv.currentIndex
                             editDialog.day = day
                             editDialog.id = id

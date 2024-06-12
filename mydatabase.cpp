@@ -30,7 +30,7 @@ MyDatabase::MyDatabase(QObject *parent)
     }
 
 
-    connect(this, &MyDatabase::workoutsChanged, this, &MyDatabase::printTable);
+    //connect(this, &MyDatabase::workoutsChanged, this, &MyDatabase::printTable);
 
 }
 

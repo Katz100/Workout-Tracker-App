@@ -15,6 +15,7 @@ Rectangle {
     color: "#453999"
 
     Button {
+        id: homeButton
         anchors {
             left: parent.left
             verticalCenter: parent.verticalCenter
@@ -24,10 +25,29 @@ Rectangle {
         icon.source: "images/icons8-home-24.png"
 
         onClicked: {
-            lm.clear()
-            MyTimer.resetTimer()
-            Backend.resetWorkout()
-            loader.source = "Home.qml"
+            clear("Home.qml")
         }
+    }
+
+    Button {
+        id: settingsButton
+        anchors {
+            left: homeButton.right
+            leftMargin: 10
+            verticalCenter: parent.verticalCenter
+        }
+
+        icon.source: "images/icons8-settings-24.png"
+
+        onClicked: {
+            clear("")
+        }
+    }
+
+    function clear(source) {
+        lm.clear()
+        MyTimer.resetTimer()
+        Backend.resetWorkout()
+        loader.source = source
     }
 }
