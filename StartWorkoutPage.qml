@@ -49,9 +49,16 @@ Rectangle {
                 Layout.columnSpan: 3
                 Layout.alignment: Qt.AlignCenter
             }
-            Text {
-                id: timerText
-                text: MyTimer.seconds
+            CircularSlider {
+                id: slider
+                interactive: false
+                value: MyTimer.seconds / currentRest
+                Text {
+                    id: timerText
+                    text: MyTimer.seconds
+                    anchors.centerIn: parent
+
+                }
                 Layout.columnSpan: 3
                 Layout.alignment: Qt.AlignCenter
             }

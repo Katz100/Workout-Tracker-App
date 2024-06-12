@@ -106,6 +106,23 @@ QVariantMap MyDatabase::findWorkout(int id)
     return workout;
 }
 
+int MyDatabase::findRest(int id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT rest FROM Workouts WHERE id = ?");
+    query.bindValue(0, id);
+    if (query.exec())
+    {
+        qDebug() << "findRest() ok";
+    }
+    else
+    {
+        qDebug() << "findRest() error";
+    }
+
+    return query.next() ? query.value(0).toInt() : -1;
+}
+
 void MyDatabase::deleteWorkouts()
 {
     QSqlQuery query;
