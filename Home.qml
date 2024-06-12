@@ -11,10 +11,17 @@ Rectangle {
         anchors.centerIn: parent
 
         Label {
+            id: lbl
             text: "Workout Tracker"
             font.pixelSize: 30
+            font.family: "serif"
             Layout.alignment: Qt.AlignCenter
-            Layout.bottomMargin: 200
+            Layout.bottomMargin: 50
+        }
+
+        Image {
+            source: "images/icons8-dumbell-100.png"
+            Layout.alignment: Qt.AlignCenter
         }
 
 
