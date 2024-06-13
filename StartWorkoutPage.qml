@@ -12,7 +12,7 @@ Rectangle {
     color: "#77A6EE"
     property var currentWorkout: lm.get(Backend.currentWorkoutIndex).workout_name
     property var previousWorkout: Backend.previousWorkout()
-    property var nextWorkout: Backend.nextWorkout()
+    property var nextWorkout: Backend.isEmpty() ? "N/A" : Backend.nextWorkout()
     property int currentSet: Backend.currentSet
     property int currentRest: lm.get(Backend.currentWorkoutIndex).rest
     ColumnLayout {
@@ -52,12 +52,13 @@ Rectangle {
             CircularSlider {
                 id: slider
                 interactive: false
+                progressColor: "#9930cf"
                 value: MyTimer.seconds / currentRest
                 Text {
                     id: timerText
                     text: MyTimer.seconds
                     anchors.centerIn: parent
-
+                    font.pixelSize: 30
                 }
                 Layout.columnSpan: 3
                 Layout.alignment: Qt.AlignCenter
@@ -71,6 +72,7 @@ Rectangle {
                 id: startTimerButton
                 text: "Start Timer"
                 Layout.preferredWidth: 150
+
                 onClicked: {
                     MyTimer.setTimer(currentRest)
                     MyTimer.pause_timer = false
@@ -110,6 +112,7 @@ Rectangle {
                 onClicked: {
                     Backend.previousSet()
                     MyTimer.resetTimer()
+                    MyTimer.pause_timer = false;
                     updateText()
                 }
             }
@@ -121,6 +124,7 @@ Rectangle {
                 onClicked: {
                     if (!Backend.isWorkoutFinished()){
                         Backend.nextSet()
+                        MyTimer.pause_timer = false;
                     }
                     MyTimer.resetTimer()
                     if (Backend.isWorkoutFinished()) {

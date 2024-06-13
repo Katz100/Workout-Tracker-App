@@ -6,19 +6,19 @@ function nextSet() {
     if (currentSet > lm.get(currentWorkoutIndex).sets)
     {
         currentSet = 1;
-        currentWorkoutIndex++
+        currentWorkoutIndex++;
     }
 }
 
 function previousSet() {
     currentSet--;
-    if (currentSet == 0)
+    if (currentSet === 0)
     {
-        if (currentWorkoutIndex != 0)
+        if (currentWorkoutIndex !== 0)
         {
             currentWorkoutIndex--;
             currentSet = lm.get(currentWorkoutIndex).sets
-        } else if (currentWorkoutIndex == 0 && currentSet == 0){
+        } else if (currentWorkoutIndex === 0 && currentSet === 0){
             currentSet = 1;
         } else {
             currentSet = lm.get(currentWorkoutIndex).sets;
@@ -27,14 +27,14 @@ function previousSet() {
 }
 
 function previousWorkout() {
-    if (currentWorkoutIndex == 0) {
+    if (currentWorkoutIndex === 0) {
         return "N/A"
     } else {
         return lm.get(currentWorkoutIndex-1).workout_name
     }
 }
 function nextWorkout() {
-    if (currentWorkoutIndex == lm.count-1) {
+    if (currentWorkoutIndex === lm.count-1) {
         return "N/A"
     } else {
         return lm.get(currentWorkoutIndex+1).workout_name

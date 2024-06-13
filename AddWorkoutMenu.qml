@@ -69,5 +69,6 @@ Rectangle {
           buttons: MessageDialog.Ok
           onAccepted: close()
        }
+
    }
 }
