@@ -51,7 +51,9 @@ function resetWorkout() {
 }
 
 function getWorkouts(day) {
-    lm.clear()
+    if (!isEmpty()) {
+        lm.clear()
+    }
     let workouts = Database.getWorkouts(day);
 
     for (let i = 0; i < workouts.length; i++) {

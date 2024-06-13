@@ -28,20 +28,10 @@ Window {
             left: parent.left
             bottom: parent.bottom
         }
-       source: "Home.qml"
+        source: "Home.qml"
 
-       onStatusChanged: {
-           loadingStatus.text = loader.status === Loader.Ready ? "Loaded" : "Not loaded"
-            console.log("loading..")
-               }
-
-               Text {
-                   id: loadingStatus
-                   anchors.centerIn: parent
-                   font.pixelSize: 16
-               }
-       }
     }
+}
 
 
 

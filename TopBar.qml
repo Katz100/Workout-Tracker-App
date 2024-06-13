@@ -40,7 +40,7 @@ Rectangle {
         icon.source: "images/icons8-settings-24.png"
 
         onClicked: {
-            clear("")
+            clear("SettingsMenu.qml")
         }
     }
 
