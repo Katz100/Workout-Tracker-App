@@ -29,8 +29,8 @@ Window {
             bottom: parent.bottom
         }
         source: "Home.qml"
-
     }
+
 }
 
 

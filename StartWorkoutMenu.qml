@@ -8,7 +8,7 @@ import "ListModelFunctions.js" as Backend
 
 Rectangle {
     color: "#77A6EE"
-
+    //focus: true
     ColumnLayout {
         id: col
         anchors.centerIn: parent
@@ -37,6 +37,14 @@ Rectangle {
         text: "No workouts on this day."
         buttons: MessageDialog.Ok
         onAccepted: close()
+    }
+
+    //test on android
+    Keys.onReleased: {
+        if (event.key == Qt.Key_Back) {
+            console.log("Back button captured - wunderbar !")
+            event.accepted = true
+        }
     }
 
 }

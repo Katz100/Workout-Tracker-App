@@ -16,6 +16,7 @@ Rectangle {
             id: day
             model: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
             Layout.preferredWidth: 250
+            Material.accent: Material.Blue
         }
         TextField {
             id: workoutName
