@@ -4,10 +4,12 @@
 #include "mydatabase.h"
 #include "mytimer.h"
 
+
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
     QQuickStyle::setStyle("Material");
+
     MyTimer* myTimer = new MyTimer(&app);
     qmlRegisterSingletonInstance("com.company.mytimer", 1, 0, "MyTimer", myTimer);
 

@@ -11,7 +11,6 @@ qt_standard_project_setup()
 find_package(Qt6 REQUIRED COMPONENTS Sql Multimedia)
 find_package(Qt6 REQUIRED COMPONENTS Multimedia)
 
-
 qt_add_executable(appWorkout-Tracker-App
     main.cpp
 )
@@ -22,8 +21,7 @@ target_link_libraries(appWorkout-Tracker-App PRIVATE Qt6::Multimedia)
 set(QTAT_NOTIFICATION ON)
 set(QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/QtAndroidTools)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/QtAndroidTools)
-
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/QtAndroidTools build)
 target_link_libraries(appWorkout-Tracker-App PRIVATE QtAndroidTools)
 
 qt_add_qml_module(appWorkout-Tracker-App
@@ -69,9 +67,6 @@ set_target_properties(appWorkout-Tracker-App PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
-set_property(TARGET appWorkout-Tracker-App APPEND PROPERTY
-    QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
-)
 
 target_link_libraries(appWorkout-Tracker-App
     PRIVATE Qt6::Quick

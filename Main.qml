@@ -31,6 +31,8 @@ Window {
         source: "Home.qml"
     }
 
+
+
 }
 
 

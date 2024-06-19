@@ -61,6 +61,7 @@ Rectangle {
                Database.addWorkout(day.currentText, workoutName.text, parseInt(sets.text), parseInt(rest.text));
                    isFine = true
                    okDialog.open()
+
                }
            }
        }
