@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 project(Workout-Tracker-App VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
 find_package(Qt6 REQUIRED COMPONENTS Core Gui QuickControls2)
@@ -18,11 +19,8 @@ qt_add_executable(appWorkout-Tracker-App
 target_link_libraries(appWorkout-Tracker-App PRIVATE Qt6::Sql)
 target_link_libraries(appWorkout-Tracker-App PRIVATE Qt6::Multimedia)
 
-set(QTAT_NOTIFICATION ON)
-set(QT_ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/QtAndroidTools)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/QtAndroidTools build)
-target_link_libraries(appWorkout-Tracker-App PRIVATE QtAndroidTools)
+
+
 
 qt_add_qml_module(appWorkout-Tracker-App
     URI Workout-Tracker-App
@@ -68,12 +66,14 @@ set_target_properties(appWorkout-Tracker-App PROPERTIES
 )
 
 
+
 target_link_libraries(appWorkout-Tracker-App
     PRIVATE Qt6::Quick
     PRIVATE Qt6::Core
     PRIVATE Qt6::Gui
     PRIVATE Qt6::QuickControls2
 )
+
 
 include(GNUInstallDirs)
 install(TARGETS appWorkout-Tracker-App
@@ -82,4 +82,7 @@ install(TARGETS appWorkout-Tracker-App
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
+set_property(TARGET appWorkout-Tracker-App APPEND PROPERTY
+    QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
+)
 

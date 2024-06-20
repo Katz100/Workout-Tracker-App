@@ -3,8 +3,6 @@
 #include <QQuickStyle>
 #include "mydatabase.h"
 #include "mytimer.h"
-
-
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
