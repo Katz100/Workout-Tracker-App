@@ -15,117 +15,125 @@ Rectangle {
     property var nextWorkout: Backend.isEmpty() ? "N/A" : Backend.nextWorkout()
     property int currentSet: Backend.currentSet
     property int currentRest: lm.get(Backend.currentWorkoutIndex).rest
-    ColumnLayout {
-        id: col
-        spacing: 30
-        anchors.centerIn: parent
-        GridLayout {
-            rowSpacing: 30
-            rows: 3
-            columns: 3
+    GridLayout {
+        id: grid
+        columns: 3
+        rowSpacing: 10
+        columnSpacing: 10
+        anchors {
+            top: parent.top
+            bottom: gridButtons.top
+            left: parent.left
+            right: parent.right
+        }
+
+        Rectangle {
+            color: "#f0f0f0"
+            radius: 8
+            border.color: "gray"
+            Layout.fillWidth: true
+            Layout.preferredHeight: 50
+            Layout.alignment: Qt.AlignCenter
             Text {
                 id: previousExercise
                 text: "Previous:\n" + previousWorkout
+                anchors.centerIn: parent
                 color: "gray"
-                Layout.fillWidth: true
+                font.pixelSize: 16
             }
-
+        }
+        Rectangle {
+            color: "#d0e1f9"
+            radius: 8
+            border.color: "#003366"
+            Layout.fillWidth: true
+            Layout.preferredHeight: 50
+            Layout.alignment: Qt.AlignCenter
             Text {
                 id: currentWorkoutTxt
                 text: currentWorkout
-                Layout.fillWidth: true
-            }
+                color: "#003366"
+                font.pixelSize: 18
+                font.bold: true
+                anchors.centerIn: parent
 
-            Text {
-                id: nexExercise
-                text: "Next:\n" + nextWorkout
-                color: "gray"
-                Layout.fillWidth: true
-            }
-
-            Text {
-                id: setsTxt
-                text: "Set: " + currentSet
-                Layout.columnSpan: 3
-                Layout.alignment: Qt.AlignCenter
-            }
-            CircularSlider {
-                id: slider
-                interactive: false
-                progressColor: "#9930cf"
-                value: MyTimer.seconds / currentRest
-                Text {
-                    id: timerText
-                    text: MyTimer.seconds
-                    anchors.centerIn: parent
-                    font.pixelSize: 45
-                }
-                Layout.columnSpan: 3
-                Layout.alignment: Qt.AlignCenter
             }
         }
+        Rectangle {
+            color: "#f0f0f0"
+            radius: 8
+            border.color: "gray"
+            Layout.fillWidth: true
+            Layout.preferredHeight: 50
+            Layout.alignment: Qt.AlignCenter
+            Text {
+                id: nexExercise
+                anchors.centerIn: parent
+                text: "Next:\n" + nextWorkout
+                color: "gray"
+                font.pixelSize: 16
+            }
+        }
+        Text {
+            id: setsTxt
+            text: "Set: " + currentSet
+            Layout.columnSpan: 3
+            Layout.alignment: Qt.AlignCenter
+            font.pixelSize: 20
+            font.bold: true
+            color: "black"
+        }
+        CircularSlider {
+            id: slider
+            interactive: false
+            progressColor: "#9930cf"
+            implicitHeight: 200
+            implicitWidth: 200
+            value: MyTimer.seconds / currentRest
+            Text {
+                id: timerText
+                text: MyTimer.seconds
+                anchors.centerIn: parent
+                font.pixelSize: 45
+            }
+            Layout.columnSpan: 3
+            Layout.alignment: Qt.AlignCenter
+        }
 
-        GridLayout {
-            rows: 2
-            columns: 2
-            Button {
-                id: startTimerButton
-                text: "Start Timer"
-                Layout.preferredWidth: 150
+    }
 
-                onClicked: {
-                    MyTimer.setTimer(currentRest)
-                    MyTimer.pause_timer = false
-                }
+    GridLayout {
+        id: gridButtons
+        columns: 2
+        rows: 2
+        columnSpacing: 10
+        rowSpacing: 10
+        anchors {
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+        }
 
-                MediaPlayer {
-                    id: playSound
-                    source: "audio/timer-sound.mp3"
-                    audioOutput: AudioOutput {}
-                }
-                Connections {
-                    target: MyTimer
-                    function onTimerFinished() {
-                        playSound.play()
-                        Backend.nextSet()
-                        MyTimer.resetTimer()
-                        if (Backend.isWorkoutFinished()) {
-                            workoutFinishedDialog.open()
-                        } else {
-                            updateText()
-                        }
-                    }
-                }
+        Button {
+            id: startTimerButton
+            text: "Start Timer"
+            Layout.preferredWidth: 150
+            Layout.alignment: Qt.AlignCenter
+            onClicked: {
+                MyTimer.setTimer(currentRest)
+                MyTimer.pause_timer = false
             }
 
-            Button {
-                id: pauseTimerButton
-                icon.source: MyTimer.pause_timer? "images/icons8-play-48.png" : "images/icons8-pause-button-64.png"
-                Layout.preferredWidth: 150
-                onClicked: MyTimer.pauseStartTimer()
+            MediaPlayer {
+                id: playSound
+                source: "audio/timer-sound.mp3"
+                audioOutput: AudioOutput {}
             }
-
-            Button {
-                id: previousSetButton
-                text: "Previous Set"
-                Layout.preferredWidth: 150
-                onClicked: {
-                    Backend.previousSet()
-                    MyTimer.resetTimer()
-                    MyTimer.pause_timer = false;
-                    updateText()
-                }
-            }
-
-            Button {
-                id: nextSetButton
-                text: "Next Set"
-                Layout.preferredWidth: 150
-                onClicked: {
-                    if (!Backend.isWorkoutFinished()){
-                        Backend.nextSet()
-                        MyTimer.pause_timer = false;
-                    }
+            Connections {
+                target: MyTimer
+                function onTimerFinished() {
+                    playSound.play()
+                    Backend.nextSet()
                     MyTimer.resetTimer()
                     if (Backend.isWorkoutFinished()) {
                         workoutFinishedDialog.open()
@@ -135,7 +143,49 @@ Rectangle {
                 }
             }
         }
+
+        Button {
+            id: pauseTimerButton
+            icon.source: MyTimer.pause_timer? "images/icons8-play-48.png" : "images/icons8-pause-button-64.png"
+            Layout.preferredWidth: 150
+            Layout.alignment: Qt.AlignCenter
+            onClicked: MyTimer.pauseStartTimer()
+        }
+
+        Button {
+            id: previousSetButton
+            text: "Previous Set"
+            Layout.preferredWidth: 150
+            Layout.alignment: Qt.AlignCenter
+            onClicked: {
+                Backend.previousSet()
+                MyTimer.resetTimer()
+                MyTimer.pause_timer = false;
+                updateText()
+            }
+        }
+
+        Button {
+            id: nextSetButton
+            text: "Next Set"
+            Layout.preferredWidth: 150
+            Layout.alignment: Qt.AlignCenter
+            onClicked: {
+                if (!Backend.isWorkoutFinished()){
+                    Backend.nextSet()
+                    MyTimer.pause_timer = false;
+                }
+                MyTimer.resetTimer()
+                if (Backend.isWorkoutFinished()) {
+                    workoutFinishedDialog.open()
+                } else {
+                    updateText()
+                }
+            }
+        }
     }
+
+
 
     MessageDialog {
         id: workoutFinishedDialog
