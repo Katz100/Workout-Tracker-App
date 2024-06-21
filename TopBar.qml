@@ -12,7 +12,7 @@ Rectangle {
     }
     height: 50
     z: 1
-    color: "#453999"
+    color: barColor
 
     Button {
         id: homeButton

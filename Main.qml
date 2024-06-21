@@ -6,12 +6,13 @@ Window {
     id: root
     width: 360
     height: 640
-    color: "#77A6EE"
+    color: bgColor
     visible: true
     title: qsTr("Workout Tracker")
 
     property var day
-
+    property string bgColor: "white"
+    property string barColor: "black"
     ListModel {
         id: lm
     }

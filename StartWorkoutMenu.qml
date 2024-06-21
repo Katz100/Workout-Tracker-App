@@ -7,7 +7,7 @@ import com.company.mytimer
 import "ListModelFunctions.js" as Backend
 
 Rectangle {
-    color: "#77A6EE"
+    color: bgColor
     //focus: true
     ColumnLayout {
         id: col

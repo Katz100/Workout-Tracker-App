@@ -4,7 +4,7 @@ import "ListModelFunctions.js" as Backend
 import com.company.mydatabase
 
 Rectangle {
-    color: "#77A6EE"
+    color: bgColor
     property real workoutTime: Backend.estimateWorkout(day)
 
     EditDialog {
@@ -105,7 +105,7 @@ Rectangle {
         anchors { bottom: parent.bottom; left: parent.left; right: parent.right }
         height: 50
         z: 1
-        color: "#453999"
+        color: barColor
 
         Button {
             anchors {
@@ -115,13 +115,13 @@ Rectangle {
             }
 
             text: "Back"
-
             onClicked: loader.source = "EditWorkoutMenu.qml"
         }
 
         Text {
             anchors.centerIn: parent
             text: "<b>Estimated workout time: " + workoutTime + "</b>"
+            color: "white"
             font.pointSize: 14
         }
     }

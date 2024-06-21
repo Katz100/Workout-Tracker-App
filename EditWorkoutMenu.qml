@@ -6,7 +6,7 @@ import com.company.mydatabase
 import "ListModelFunctions.js" as Backend
 
 Rectangle {
-    color: "#77A6EE"
+    color: bgColor
 
     ColumnLayout {
         id: col

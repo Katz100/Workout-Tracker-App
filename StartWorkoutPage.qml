@@ -9,7 +9,7 @@ import QtMultimedia
 import "ListModelFunctions.js" as Backend
 
 Rectangle {
-    color: "#77A6EE"
+    color: bgColor
     property var currentWorkout: lm.get(Backend.currentWorkoutIndex).workout_name
     property var previousWorkout: Backend.previousWorkout()
     property var nextWorkout: Backend.isEmpty() ? "N/A" : Backend.nextWorkout()
@@ -58,7 +58,7 @@ Rectangle {
                     id: timerText
                     text: MyTimer.seconds
                     anchors.centerIn: parent
-                    font.pixelSize: 30
+                    font.pixelSize: 45
                 }
                 Layout.columnSpan: 3
                 Layout.alignment: Qt.AlignCenter

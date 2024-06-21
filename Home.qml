@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Rectangle {
-    color: "#77A6EE"
+    color: bgColor
 
 
     ColumnLayout {
@@ -12,7 +12,7 @@ Rectangle {
 
         Label {
             id: lbl
-            text: "Workout Tracker2"
+            text: "Workout Tracker"
             font.pixelSize: 30
             font.family: "serif"
             Layout.alignment: Qt.AlignCenter

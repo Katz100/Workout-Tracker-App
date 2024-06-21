@@ -5,7 +5,7 @@ import QtQuick.Dialogs
 import com.company.mydatabase
 
 Rectangle {
-    color: "#77A6EE"
+    color: bgColor
 
     property bool isFine: true
    ColumnLayout {

@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtCore
 Rectangle {
-    color: "#77A6EE"
+    color: bgColor
 
     Label {
         text: "Icons by Icons8"
