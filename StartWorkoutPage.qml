@@ -87,8 +87,6 @@ Rectangle {
             id: slider
             interactive: false
             progressColor: "#9930cf"
-            implicitHeight: 200
-            implicitWidth: 200
             value: MyTimer.seconds / currentRest
             Text {
                 id: timerText
