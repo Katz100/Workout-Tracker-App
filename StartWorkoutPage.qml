@@ -7,7 +7,7 @@ import com.company.mytimer
 import QtMultimedia
 
 import "ListModelFunctions.js" as Backend
-
+//fix: when user clicks pause when timer is 0 it moves on to the next set
 Rectangle {
     color: bgColor
     property var currentWorkout: lm.get(Backend.currentWorkoutIndex).workout_name
@@ -15,6 +15,7 @@ Rectangle {
     property var nextWorkout: Backend.isEmpty() ? "N/A" : Backend.nextWorkout()
     property int currentSet: Backend.currentSet
     property int currentRest: lm.get(Backend.currentWorkoutIndex).rest
+    property int setsCompleted: Backend.setsCompleted
     GridLayout {
         id: grid
         columns: 3
@@ -83,6 +84,17 @@ Rectangle {
             font.bold: true
             color: "black"
         }
+
+        ProgressBar {
+            id: progressBar
+            Layout.columnSpan: 3
+            Layout.alignment: Qt.AlignCenter
+            from: 0
+            to: Database.countSets(day)-1
+            value: setsCompleted
+
+        }
+
         CircularSlider {
             id: slider
             interactive: false
@@ -201,6 +213,7 @@ Rectangle {
         currentRest = lm.get(Backend.currentWorkoutIndex).rest
         previousWorkout = Backend.previousWorkout()
         nextWorkout = Backend.nextWorkout()
+        setsCompleted = Backend.setsCompleted
     }
 }
 

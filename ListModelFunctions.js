@@ -1,8 +1,10 @@
 let currentWorkoutIndex = 0;
 let currentSet = 1
+let setsCompleted = 0;
 
 function nextSet() {
     currentSet++;
+    setsCompleted++;
     if (currentSet > lm.get(currentWorkoutIndex).sets)
     {
         currentSet = 1;
@@ -14,6 +16,7 @@ function previousSet() {
     currentSet--;
     if (currentSet === 0)
     {
+        //end of exercise but not end of first exercise
         if (currentWorkoutIndex !== 0)
         {
             currentWorkoutIndex--;
@@ -48,6 +51,7 @@ function isWorkoutFinished() {
 function resetWorkout() {
     currentWorkoutIndex = 1;
     currentSet = 1;
+    setsCompleted = 0;
 }
 
 function getWorkouts(day) {
