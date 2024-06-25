@@ -17,6 +17,10 @@ Window {
         id: lm
     }
 
+    ListModel {
+        id: dataModel
+    }
+
     TopBar {
         id: topBar
     }
@@ -29,7 +33,7 @@ Window {
             left: parent.left
             bottom: parent.bottom
         }
-        source: "Home.qml"
+        source: "DataMenu.qml"
     }
 
 

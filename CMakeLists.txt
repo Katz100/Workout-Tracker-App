@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 3.16)
 project(Workout-Tracker-App VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
 find_package(Qt6 REQUIRED COMPONENTS Core Gui QuickControls2)
@@ -52,6 +51,8 @@ qt_add_qml_module(appWorkout-Tracker-App
         QML_FILES StartWorkoutMenu.qml
         QML_FILES StartWorkoutPage.qml
         QML_FILES SettingsMenu.qml
+        SOURCES exercisedata.h exercisedata.cpp
+        QML_FILES DataMenu.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -82,7 +83,7 @@ install(TARGETS appWorkout-Tracker-App
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-set_property(TARGET appWorkout-Tracker-App APPEND PROPERTY
-    QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android
-)
 
+if(ANDROID)
+    set_property(TARGET appWorkout-Tracker-App APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
+endif()

@@ -3,6 +3,7 @@
 #include <QQuickStyle>
 #include "mydatabase.h"
 #include "mytimer.h"
+#include "exercisedata.h"
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
@@ -13,6 +14,10 @@ int main(int argc, char *argv[])
 
     MyDatabase* myDatabase = new MyDatabase(&app);
     qmlRegisterSingletonInstance("com.company.mydatabase", 1, 0, "Database", myDatabase);
+
+    ExerciseData* myData = new ExerciseData(&app);
+    qmlRegisterSingletonInstance("com.company.mydata", 1, 0, "Data", myData);
+
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/Workout-Tracker-App/Main.qml"));
     QObject::connect(

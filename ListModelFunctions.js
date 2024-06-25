@@ -56,12 +56,24 @@ function resetWorkout() {
 
 function getWorkouts(day) {
     if (!isEmpty()) {
-        lm.clear()
+        lm.clear();
     }
     let workouts = Database.getWorkouts(day);
 
     for (let i = 0; i < workouts.length; i++) {
         lm.append(workouts[i]);
+    }
+}
+
+function getData(muscle) {
+    if(!(dataModel.count === 0)) {
+        dataModel.clear();
+    }
+    let exercises = Data.muscleGroup(muscle);
+
+    console.log("length: " + exercises.length)
+    for (let i = 0; i < exercises.length; i++) {
+        dataModel.append(exercises[i]);
     }
 }
 

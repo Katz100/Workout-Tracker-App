@@ -75,6 +75,7 @@ QVariantList MyDatabase::getWorkouts(const QString& day)
         workout.insert("sets", query.value("sets"));
         workout.insert("rest", query.value("rest"));
         workouts.append(workout);
+        qDebug() << workouts;
     }
 
     return workouts;
