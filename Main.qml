@@ -33,10 +33,15 @@ Window {
             left: parent.left
             bottom: parent.bottom
         }
-        source: "DataMenu.qml"
+        source: "Home.qml"
+        asynchronous: true
+
+        BusyIndicator {
+                 anchors.centerIn: parent
+                 running: loader.status == Loader.Loading
+            }
+
     }
-
-
 }
 
 

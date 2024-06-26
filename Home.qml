@@ -85,5 +85,26 @@ Rectangle {
                 }
             }
         }
+
+        Button {
+            id: findWorkoutButton
+            Layout.preferredWidth: 200
+            Layout.preferredHeight: 60
+            onClicked: {
+                loader.source = "DataMenu.qml"
+            }
+            RowLayout {
+                anchors.fill: parent
+
+                Image {
+                    source: "images/magnifying-glass.png"
+                }
+
+                Label {
+                    text: "Find Workout"
+                    Layout.alignment: Qt.AlignVCenter
+                }
+            }
+        }
     }
 }

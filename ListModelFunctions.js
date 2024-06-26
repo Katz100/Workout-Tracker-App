@@ -65,13 +65,12 @@ function getWorkouts(day) {
     }
 }
 
-function getData(muscle) {
-    if(!(dataModel.count === 0)) {
+function getData(muscle, type, name, difficulty) {
+    if(!(dataIsEmpty())) {
         dataModel.clear();
     }
-    let exercises = Data.muscleGroup(muscle);
+    let exercises = Data.muscleGroup(muscle, type, name, difficulty);
 
-    console.log("length: " + exercises.length)
     for (let i = 0; i < exercises.length; i++) {
         dataModel.append(exercises[i]);
     }
@@ -89,6 +88,10 @@ function estimateWorkout(day) {
 
 function isEmpty() {
     return (lm.count == 0)
+}
+
+function dataIsEmpty() {
+    return (dataModel.count === 0);
 }
 
 

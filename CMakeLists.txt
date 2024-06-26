@@ -4,16 +4,25 @@ project(Workout-Tracker-App VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(ANDROID_EXTRA_LIBS
+    ${CMAKE_CURRENT_SOURCE_DIR}/ssl_1.1/arm64-v8a/libcrypto_1_1.so
+    ${CMAKE_CURRENT_SOURCE_DIR}/ssl_1.1/arm64-v8a/libssl_1_1.so
+CACHE INTERNAL "")
+
 find_package(Qt6 6.4 REQUIRED COMPONENTS Quick)
-find_package(Qt6 REQUIRED COMPONENTS Core Gui QuickControls2)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui QuickControls2 Network)
 
 qt_standard_project_setup()
 find_package(Qt6 REQUIRED COMPONENTS Sql Multimedia)
 find_package(Qt6 REQUIRED COMPONENTS Multimedia)
 
+
+
 qt_add_executable(appWorkout-Tracker-App
     main.cpp
 )
+
+
 
 target_link_libraries(appWorkout-Tracker-App PRIVATE Qt6::Sql)
 target_link_libraries(appWorkout-Tracker-App PRIVATE Qt6::Multimedia)
@@ -46,6 +55,7 @@ qt_add_qml_module(appWorkout-Tracker-App
         images/icons8-home-24.png
         images/icons8-settings-24.png
         images/icons8-dumbell-100.png
+        images/magnifying-glass.png
         audio/timer-sound.mp3
         QML_FILES EditDialog.qml
         QML_FILES StartWorkoutMenu.qml
@@ -73,6 +83,7 @@ target_link_libraries(appWorkout-Tracker-App
     PRIVATE Qt6::Core
     PRIVATE Qt6::Gui
     PRIVATE Qt6::QuickControls2
+    PRIVATE Qt6::Network
 )
 
 
@@ -85,5 +96,25 @@ install(TARGETS appWorkout-Tracker-App
 
 
 if(ANDROID)
-    set_property(TARGET appWorkout-Tracker-App APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
+  set_property(TARGET appWorkout-Tracker-App APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
+
+
 endif()
+
+if (ANDROID)
+    include(FetchContent)
+
+    FetchContent_Declare(
+        android_openssl
+        DOWNLOAD_EXTRACT_TIMESTAMP true
+        URL https://github.com/KDAB/android_openssl/archive/refs/heads/master.zip
+    )
+    FetchContent_MakeAvailable(android_openssl)
+    include(${android_openssl_SOURCE_DIR}/android_openssl.cmake)
+
+    set_target_properties(appWorkout-Tracker-App PROPERTIES QT_ANDROID_EXTRA_LIBS "${ANDROID_EXTRA_LIBS}")
+
+
+
+endif()
+

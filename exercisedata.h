@@ -8,6 +8,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QCoreApplication>
+#include <QSslSocket>
 
 class ExerciseData : public QObject
 {
@@ -18,10 +19,16 @@ public:
 signals:
 
 public slots:
-    QVariantList muscleGroup(const QString& muscle);
+    QVariantList muscleGroup(const QString& muscle,
+                             const QString& type = QString(),
+                             const QString& name = QString(),
+                             const QString& difficulty = QString());
 private:
     QNetworkAccessManager m_manager;
     QString m_apiPath = "https://api.api-ninjas.com/v1/exercises?muscle=";
+    QString m_type = "&type=";
+    QString m_name = "&name=";
+    QString m_difficulty = "&difficulty=";
     const QByteArray m_key = "3Vu57OOgJ/cKr7ZXmJ+3gw==7slralJ58jR54C76";
     QNetworkRequest m_request;
 };

@@ -4,12 +4,24 @@ ExerciseData::ExerciseData(QObject *parent)
     : QObject{parent}
 {
     m_request.setRawHeader("X-Api-Key", m_key);
+    qDebug() << "Device supports OpenSSL: " << QSslSocket::supportsSsl();
+
 }
 
-QVariantList ExerciseData::muscleGroup(const QString &muscle)
+
+
+QVariantList ExerciseData::muscleGroup(const QString& muscle,
+                                       const QString& type,
+                                       const QString& name,
+                                       const QString& difficulty)
 {
     QVariantList exercises;
-    QString path = m_apiPath + muscle;
+    QString path = m_apiPath + muscle
+        + m_type + type
+        + m_name + name
+        + m_difficulty + difficulty;
+
+    qDebug() << "path: " << path;
     m_request.setUrl(QUrl(path));
     QNetworkReply* reply = m_manager.get(m_request);
 
