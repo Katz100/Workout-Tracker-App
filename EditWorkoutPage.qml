@@ -27,11 +27,13 @@ Rectangle {
             spacing: 1
             model: lm
             delegate: Rectangle {
-                color: "lightblue"
-                border.width: 2
-                width: sv.width
+                color: "#FFFFFF"
+                border.width: 1
+                border.color: "#DDDDDD"
+                radius: 5
+                width: sv.width * 0.9
                 height: 100
-
+                anchors.horizontalCenter: parent.horizontalCenter
 
 
                 Image {
