@@ -16,6 +16,7 @@ Rectangle {
 
     Button {
         id: homeButton
+        Material.background: Material.Teal
         anchors {
             left: parent.left
             verticalCenter: parent.verticalCenter
@@ -31,6 +32,7 @@ Rectangle {
 
     Button {
         id: settingsButton
+        Material.background: Material.Teal
         anchors {
             left: homeButton.right
             leftMargin: 10

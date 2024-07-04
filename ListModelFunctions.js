@@ -14,6 +14,10 @@ function nextSet() {
 
 function previousSet() {
     currentSet--;
+    if (setsCompleted !== 0) {
+        setsCompleted--;
+    }
+
     if (currentSet === 0)
     {
         //end of exercise but not end of first exercise

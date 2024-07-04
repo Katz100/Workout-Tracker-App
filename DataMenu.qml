@@ -27,9 +27,16 @@ Rectangle {
             width: parent.width
             Layout.alignment: Qt.AlignHCenter
             font.pointSize: 16
+            Material.background: Material.Green
             onClicked: {
                 Backend.getData(searchField.text)
             }
+        }
+
+        Rectangle {
+            color: "gray"
+            width: parent.width
+            height: 1
         }
 
         ScrollView {

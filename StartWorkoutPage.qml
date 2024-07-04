@@ -16,6 +16,7 @@ Rectangle {
     property int currentSet: Backend.currentSet
     property int currentRest: lm.get(Backend.currentWorkoutIndex).rest
     property int setsCompleted: Backend.setsCompleted
+
     GridLayout {
         id: grid
         columns: 3
@@ -102,9 +103,16 @@ Rectangle {
             value: MyTimer.seconds / currentRest
             Text {
                 id: timerText
-                text: MyTimer.seconds
+                text: MyTimer.seconds === 0 ? "▶" : MyTimer.seconds
                 anchors.centerIn: parent
                 font.pixelSize: 45
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        MyTimer.setTimer(currentRest)
+                        MyTimer.pause_timer = false
+                    }
+                }
             }
             Layout.columnSpan: 3
             Layout.alignment: Qt.AlignCenter

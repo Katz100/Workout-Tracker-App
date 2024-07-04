@@ -25,6 +25,7 @@ QVariantList ExerciseData::muscleGroup(const QString& muscle,
     m_request.setUrl(QUrl(path));
     QNetworkReply* reply = m_manager.get(m_request);
 
+    //wait for request to finish before continuing
     QEventLoop loop;
     QObject::connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
     loop.exec();
