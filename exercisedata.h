@@ -29,7 +29,7 @@ private:
     QString m_type = "&type=";
     QString m_name = "&name=";
     QString m_difficulty = "&difficulty=";
-    const QByteArray m_key = "secret_key";
+    const QByteArray m_key = "3Vu57OOgJ/cKr7ZXmJ+3gw==7slralJ58jR54C76";
     QNetworkRequest m_request;
 };
 
