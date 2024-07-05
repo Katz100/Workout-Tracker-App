@@ -15,6 +15,7 @@ Rectangle {
     property int currentSet: Backend.currentSet
     property int currentRest: lm.get(Backend.currentWorkoutIndex).rest
     property int setsCompleted: Backend.setsCompleted
+    property int workoutId: lm.get(Backend.currentWorkoutIndex).id
 
     GridLayout {
         id: grid
@@ -115,6 +116,14 @@ Rectangle {
             }
             Layout.columnSpan: 3
             Layout.alignment: Qt.AlignCenter
+        }
+
+        TextField {
+            id: weightUsed
+            placeholderText: workoutId
+            Layout.columnSpan: 3
+            Layout.alignment: Qt.AlignCenter
+            font.pixelSize: 14
         }
 
     }
@@ -221,6 +230,7 @@ Rectangle {
         previousWorkout = Backend.previousWorkout()
         nextWorkout = Backend.nextWorkout()
         setsCompleted = Backend.setsCompleted
+        workoutId = lm.get(Backend.currentWorkoutIndex).id
     }
 }
 

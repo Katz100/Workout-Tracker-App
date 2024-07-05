@@ -46,6 +46,7 @@ MyDatabase::MyDatabase(QObject *parent)
                         "id INTEGER PRIMARY KEY,"
                         "workout_id INTEGER,"
                         "weight_used INTEGER,"
+                        "set_number INTEGER,"
                         "date TEXT,"
                         "FOREIGN KEY(workout_id) REFERENCES Workouts(id))");
     if (initWeights.exec())
@@ -55,9 +56,10 @@ MyDatabase::MyDatabase(QObject *parent)
     else
     {
         qDebug() << "Weights table init error";
+        qDebug() << initWeights.lastError().text();
     }
 
-    //connect(this, &MyDatabase::workoutsChanged, this, &MyDatabase::printTable);
+    connect(this, &MyDatabase::workoutsChanged, this, &MyDatabase::printTable);
 
 }
 
