@@ -18,6 +18,17 @@ MyDatabase::MyDatabase(QObject *parent)
         qDebug() << "Database connection error";
     }
 
+    QSqlQuery enableFK;
+    enableFK.prepare("PRAGMA foreign_keys = ON");
+    if (enableFK.exec())
+    {
+        qDebug() << "FK ok";
+    }
+    else
+    {
+        qDebug() << "FK error";
+    }
+
     QSqlQuery init;
     init.prepare("CREATE TABLE IF NOT EXISTS Workouts (id INTEGER PRIMARY KEY, day TEXT, workout_name TEXT, sets INTEGER, rest INTEGER)");
     if (init.exec())
@@ -29,6 +40,22 @@ MyDatabase::MyDatabase(QObject *parent)
         qDebug() << "Table init error";
     }
 
+
+    QSqlQuery initWeights;
+    initWeights.prepare("CREATE TABLE IF NOT EXISTS Weights ("
+                        "id INTEGER PRIMARY KEY,"
+                        "workout_id INTEGER,"
+                        "weight_used INTEGER,"
+                        "date TEXT,"
+                        "FOREIGN KEY(workout_id) REFERENCES Workouts(id))");
+    if (initWeights.exec())
+    {
+        qDebug() << "Weights table init ok";
+    }
+    else
+    {
+        qDebug() << "Weights table init error";
+    }
 
     //connect(this, &MyDatabase::workoutsChanged, this, &MyDatabase::printTable);
 

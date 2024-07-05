@@ -7,7 +7,6 @@ import com.company.mytimer
 import QtMultimedia
 
 import "ListModelFunctions.js" as Backend
-//fix: when user clicks pause when timer is 0 it moves on to the next set
 Rectangle {
     color: bgColor
     property var currentWorkout: lm.get(Backend.currentWorkoutIndex).workout_name

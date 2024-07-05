@@ -12,8 +12,8 @@ Rectangle {
 
         Label {
             id: lbl
-            text: "Workout Tracker"
-            font.pixelSize: 30
+            text: "<b>Workout Tracker</b>"
+            font.pixelSize: 25
             font.family: "serif"
             Layout.alignment: Qt.AlignCenter
             Layout.bottomMargin: 50

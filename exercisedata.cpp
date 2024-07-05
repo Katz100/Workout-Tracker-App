@@ -32,8 +32,8 @@ QVariantList ExerciseData::muscleGroup(const QString& muscle,
 
     if (reply->error() == QNetworkReply::NoError)
     {
-        QString Response = reply->readAll();
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(Response.toUtf8());
+        QByteArray Response = reply->readAll();
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(Response);
         if (jsonDoc.isArray()) {
             QJsonArray jsonArray = jsonDoc.array();
             exercises = jsonArray.toVariantList();

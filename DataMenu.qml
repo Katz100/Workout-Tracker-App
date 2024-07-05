@@ -34,7 +34,7 @@ Rectangle {
         }
 
         Rectangle {
-            color: "gray"
+            color: "lightgray"
             width: parent.width
             height: 1
         }
