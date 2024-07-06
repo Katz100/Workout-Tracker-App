@@ -27,6 +27,10 @@ public slots:
     int countSets(const QString& day);
     int countRest(const QString& day);
     int findAverage(const QString& day);
+
+    void printWeightsTable();
+    void deleteAllWeights();
+    int addWeight(int workout_id, int weight_used, int set_number);
 private:
     QSqlDatabase db_connection;
 };

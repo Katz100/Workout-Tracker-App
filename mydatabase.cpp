@@ -41,6 +41,7 @@ MyDatabase::MyDatabase(QObject *parent)
     }
 
 
+
     QSqlQuery initWeights;
     initWeights.prepare("CREATE TABLE IF NOT EXISTS Weights ("
                         "id INTEGER PRIMARY KEY,"
@@ -48,7 +49,7 @@ MyDatabase::MyDatabase(QObject *parent)
                         "weight_used INTEGER,"
                         "set_number INTEGER,"
                         "date TEXT,"
-                        "FOREIGN KEY(workout_id) REFERENCES Workouts(id))");
+                        "FOREIGN KEY(workout_id) REFERENCES Workouts(id) ON DELETE CASCADE)");
     if (initWeights.exec())
     {
         qDebug() << "Weights table init ok";
@@ -74,6 +75,56 @@ void MyDatabase::printTable()
         qDebug() << "sets: " << query.value(3);
         qDebug() << "rest: " << query.value(4);
         qDebug() << "-------------";
+    }
+}
+
+
+void MyDatabase::printWeightsTable()
+{
+    QSqlQuery query("SELECT * FROM Weights");
+    while(query.next())
+    {
+        qDebug() << "id: " << query.value(0);
+        qDebug() << "workout_id: " << query.value(1);
+        qDebug() << "weight_used: " << query.value(2);
+        qDebug() << "set_number: " << query.value(3);
+        qDebug() << "date: " << query.value(4);
+        qDebug() << "-------------";
+    }
+}
+
+void MyDatabase::deleteAllWeights()
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM Weights");
+    if (query.exec())
+    {
+        qDebug() << "deleteAllWeights() ok";
+    }
+    else
+    {
+        qDebug() << "deleteAllWeights() error";
+    }
+}
+
+int MyDatabase::addWeight(int workout_id, int weight_used, int set_number)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO Weights (workout_id, weight_used, set_number, date)"
+                  "VALUES (?, ?, ?, datetime('now'))");
+    query.bindValue(0, workout_id);
+    query.bindValue(1, weight_used);
+    query.bindValue(2, set_number);
+    if (query.exec())
+    {
+        qDebug() << "addWeight() ok";
+        return query.lastInsertId().toInt();
+    }
+    else
+    {
+        qDebug() << "addWeight() error";
+        qDebug() << query.lastError().text();
+        return -1;
     }
 }
 

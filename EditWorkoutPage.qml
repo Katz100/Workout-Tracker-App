@@ -33,7 +33,7 @@ Rectangle {
                 radius: 5
                 width: sv.width * 0.9
                 height: 100
-                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.horizontalCenter: lv.contentItem.horizontalCenter
 
 
                 Image {
