@@ -3,6 +3,7 @@ let currentSet = 1
 let setsCompleted = 0;
 
 function nextSet() {
+    Database.addWeight(workoutId, weightUsed.text, currentSet)
     currentSet++;
     setsCompleted++;
     if (currentSet > lm.get(currentWorkoutIndex).sets)

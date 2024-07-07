@@ -60,7 +60,7 @@ MyDatabase::MyDatabase(QObject *parent)
         qDebug() << initWeights.lastError().text();
     }
 
-    connect(this, &MyDatabase::workoutsChanged, this, &MyDatabase::printTable);
+    connect(this, &MyDatabase::workoutsChanged, this, &MyDatabase::printWeightsTable);
 
 }
 
@@ -111,7 +111,7 @@ int MyDatabase::addWeight(int workout_id, int weight_used, int set_number)
 {
     QSqlQuery query;
     query.prepare("INSERT INTO Weights (workout_id, weight_used, set_number, date)"
-                  "VALUES (?, ?, ?, datetime('now'))");
+                  "VALUES (?, ?, ?, date('now'))");
     query.bindValue(0, workout_id);
     query.bindValue(1, weight_used);
     query.bindValue(2, set_number);
@@ -127,6 +127,71 @@ int MyDatabase::addWeight(int workout_id, int weight_used, int set_number)
         return -1;
     }
 }
+
+QVariantMap MyDatabase::getWeightById(int id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Weights WHERE id = ?");
+    query.bindValue(0, id);
+    if (query.exec())
+    {
+        qDebug() << "getWeightsById() ok";
+    }
+    else
+    {
+        qDebug() << "getWeightById() error";
+    }
+
+    QVariantMap weight;
+
+    while (query.next())
+    {
+        weight.insert("id", query.value("id"));
+        weight.insert("workout_id", query.value("workout_id"));
+        weight.insert("weight_used", query.value("weight_used"));
+        weight.insert("set_number", query.value("set_number"));
+        weight.insert("date", query.value("date"));
+    }
+
+    return weight;
+}
+
+QVariantList MyDatabase::getWeightsByWorkoutId(int workout_id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Weights WHERE workout_id = ?");
+    query.bindValue(0, workout_id);
+    if (query.exec())
+    {
+        qDebug() << "getWeightsByWorkoutId() ok";
+    }
+    else
+    {
+        qDebug() << "getWeightsByWorkoutId() error";
+    }
+
+    QVariantList weights;
+
+    while (query.next())
+    {
+        QVariantMap weight;
+        weight.insert("id", query.value("id"));
+        weight.insert("workout_id", query.value("workout_id"));
+        weight.insert("weight_used", query.value("weight_used"));
+        weight.insert("set_number", query.value("set_number"));
+        weight.insert("date", query.value("date"));
+        weights.append(weight);
+    }
+
+    return weights;
+}
+
+QVariantList MyDatabase::getWeightsByDate(const QString &date)
+{
+
+    return QVariantList();
+}
+
 
 QVariantList MyDatabase::getWorkouts(const QString& day)
 {

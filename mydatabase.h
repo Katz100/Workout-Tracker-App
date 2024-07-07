@@ -31,6 +31,9 @@ public slots:
     void printWeightsTable();
     void deleteAllWeights();
     int addWeight(int workout_id, int weight_used, int set_number);
+    QVariantMap getWeightById(int id);
+    QVariantList getWeightsByWorkoutId(int workout_id);
+    QVariantList getWeightsByDate(const QString& date);
 private:
     QSqlDatabase db_connection;
 };
