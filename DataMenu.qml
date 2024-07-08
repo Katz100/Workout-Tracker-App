@@ -73,6 +73,13 @@ Rectangle {
                             text: difficulty
                         }
                     }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+
+                        }
+                    }
                 }
             }
         }
@@ -82,6 +89,4 @@ Rectangle {
         running: Backend.dataIsEmpty()
         anchors.centerIn: parent
     }
-
-
 }

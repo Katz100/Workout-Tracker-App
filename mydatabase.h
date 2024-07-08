@@ -34,6 +34,7 @@ public slots:
     QVariantMap getWeightById(int id);
     QVariantList getWeightsByWorkoutId(int workout_id);
     QVariantList getWeightsByDate(const QString& date);
+    QVariantList getWeightsAndWorkout(int workout_id);
 private:
     QSqlDatabase db_connection;
 };
