@@ -9,19 +9,63 @@ import "ListModelFunctions.js" as Backend
 Rectangle {
     color: bgColor
     //focus: true
-    ColumnLayout {
-        id: col
-        anchors.centerIn: parent
-        spacing: 20
-        Text {
-            text: "Select day of the week."
-            font.pixelSize: 20
-            font.bold: true
+
+        ListView {
+            id: lv
+            anchors.fill: parent
+            anchors.topMargin: 2
+            spacing: 10
+            model: Database.getRoutines()
+            delegate: Rectangle {
+                width: parent.width * 0.9
+                height: 50
+                border.width: 1
+                border.color: "#DDDDDD"
+                radius: 5
+                color: "#FFFFFF"
+                anchors.horizontalCenter: lv.contentItem.horizontalCenter
+                Text {
+                    id: routineTxt
+                    text: modelData
+                    font.pixelSize: 16
+                    anchors {
+                        left: parent.left
+                        top: parent.top
+                        leftMargin: 5
+                        topMargin: 5
+                    }
+                }
+
+                Text {
+                    text: "Estimated time: " + Database.findAverage(modelData) + " minutes"
+                    anchors {
+                        top: routineTxt.bottom
+                        left: parent.left
+                        leftMargin: 10
+                    }
+                }
+
+
+                MouseArea {
+                    anchors.fill: parent
+
+                    onClicked: {
+                        Backend.getWorkouts(modelData)
+                        if(Backend.isEmpty()) {
+                            workoutEmptyDialog.open()
+                        } else {
+                            loader.source = "StartWorkoutPage.qml"
+                        }
+                    }
+                }
+            }
+
         }
 
+        /*
         Repeater {
             id: repeater
-            model: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            model: Database.getRoutines()
             Button {
                 text: modelData
                 implicitWidth: 200
@@ -37,7 +81,8 @@ Rectangle {
                 }
             }
         }
-    }
+        */
+
 
     MessageDialog {
         id: workoutEmptyDialog

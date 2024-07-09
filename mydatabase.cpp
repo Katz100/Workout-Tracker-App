@@ -60,9 +60,9 @@ MyDatabase::MyDatabase(QObject *parent)
         qDebug() << initWeights.lastError().text();
     }
 
-    connect(this, &MyDatabase::workoutsChanged, this, &MyDatabase::printWeightsTable);
+    //connect(this, &MyDatabase::workoutsChanged, this, &MyDatabase::printWeightsTable);
 
-    QVariantList test = getWeightsAndWorkout(1);
+    qDebug() << getRoutines();
 
 }
 
@@ -225,6 +225,29 @@ QVariantList MyDatabase::getWeightsAndWorkout(int workout_id)
         weights.append(weight);
     }
     return weights;
+}
+
+QList<QString> MyDatabase::getRoutines()
+{
+    QSqlQuery query;
+    query.prepare("SELECT DISTINCT day FROM Workouts");
+    if (query.exec())
+    {
+        qDebug() << "getRoutines() ok";
+    }
+    else
+    {
+        qDebug() << "getRoutines() error";
+    }
+
+    QList<QString> routines;
+
+    while (query.next())
+    {
+        routines.append(query.value(0).toString());
+    }
+
+    return routines;
 }
 
 

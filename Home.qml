@@ -29,7 +29,6 @@ Rectangle {
             Layout.preferredWidth: 200
             Layout.preferredHeight: 60
             onClicked: loader.source = "StartWorkoutMenu.qml"
-            Material.background: Material.Purple
             RowLayout {
                 anchors.fill: parent
                 Image {
@@ -42,7 +41,6 @@ Rectangle {
                 Label {
                     text: "Start Workout"
                     Layout.alignment: Qt.AlignVCenter
-                    color: "white"
                     font.bold: true
                 }
             }
@@ -55,7 +53,6 @@ Rectangle {
             Layout.preferredWidth: 200
             Layout.preferredHeight: 60
             onClicked: loader.source = "EditWorkoutMenu.qml"
-            Material.background: Material.Purple
             RowLayout {
                 anchors.fill: parent
                 Image {
@@ -66,9 +63,8 @@ Rectangle {
                 }
 
                 Label {
-                    text: "View/Edit Workouts"
+                    text: "View/Edit Routine"
                     Layout.alignment: Qt.AlignVCenter
-                    color: "white"
                     font.bold: true
                 }
             }
@@ -79,7 +75,6 @@ Rectangle {
             Layout.preferredWidth: 200
             Layout.preferredHeight: 60
             onClicked: loader.source = "AddWorkoutMenu.qml"
-            Material.background: Material.Purple
             RowLayout {
                 anchors.fill: parent
                 Image {
@@ -87,9 +82,8 @@ Rectangle {
                 }
 
                 Label {
-                    text: "Add Workout(s)"
+                    text: "Add Exercise"
                     Layout.alignment: Qt.AlignVCenter
-                    color: "white"
                     font.bold: true
                 }
             }
@@ -99,7 +93,6 @@ Rectangle {
             id: findWorkoutButton
             Layout.preferredWidth: 200
             Layout.preferredHeight: 60
-            Material.background: Material.Purple
             onClicked: {
                 loader.source = "DataMenu.qml"
             }
@@ -113,7 +106,6 @@ Rectangle {
                 Label {
                     text: "Find Workout"
                     Layout.alignment: Qt.AlignVCenter
-                    color: "white"
                     font.bold: true
                 }
             }

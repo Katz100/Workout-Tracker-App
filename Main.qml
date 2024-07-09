@@ -12,7 +12,7 @@ Window {
 
     property var day
     property string bgColor: "white"
-    property string barColor: "black"
+    property string barColor: "#5F5C6D"
     ListModel {
         id: lm
     }

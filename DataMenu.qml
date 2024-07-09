@@ -19,7 +19,6 @@ Rectangle {
             Layout.topMargin: 5
             Layout.alignment: Qt.AlignHCenter
             font.pointSize: 16
-            color: "#333333"
         }
 
         Button {

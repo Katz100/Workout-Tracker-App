@@ -12,9 +12,9 @@ Rectangle {
        id: col
        spacing: 20
        anchors.centerIn: parent
-        ComboBox {
+        TextField {
             id: day
-            model: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            placeholderText: "Name of routine"
             Layout.preferredWidth: 250
             Material.accent: Material.Blue
         }
@@ -58,7 +58,7 @@ Rectangle {
                    okDialog.open()
                }
                else {
-               Database.addWorkout(day.currentText, workoutName.text, parseInt(sets.text), parseInt(rest.text));
+               Database.addWorkout(day.text, workoutName.text, parseInt(sets.text), parseInt(rest.text));
                    isFine = true
                    okDialog.open()
 
