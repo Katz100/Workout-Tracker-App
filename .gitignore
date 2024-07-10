@@ -6,6 +6,7 @@
 *.a
 *.core
 *.md
+config.h
 *.moc
 *.o
 *.obj
