@@ -100,11 +100,9 @@ Rectangle {
         }
         */
 
-
-
     MessageDialog {
         id: workoutEmptyDialog
-        text: "No workouts on this day."
+        text: "No workouts to be shown."
         buttons: MessageDialog.Ok
         onAccepted: close()
     }
@@ -115,4 +113,13 @@ Rectangle {
         buttons: MessageDialog.Yes | MessageDialog.No
         onAccepted: Database.deleteWorkouts()
     }
+
+    Keys.onReleased: {
+        if (event.key === Qt.Key_Back) {
+            loader.source = "Home.qml"
+            event.accepted = true
+        }
+    }
+
+    Component.onCompleted: forceActiveFocus()
 }

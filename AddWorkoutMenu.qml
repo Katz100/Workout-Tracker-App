@@ -73,4 +73,13 @@ Rectangle {
        }
 
    }
+
+   Keys.onReleased: {
+       if (event.key === Qt.Key_Back) {
+           loader.source = "Home.qml"
+           event.accepted = true
+       }
+   }
+
+   Component.onCompleted: forceActiveFocus()
 }

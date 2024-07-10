@@ -39,6 +39,9 @@ Dialog {
         root.okPressed()
     }
 
-    onRejected: root.close()
+    onRejected: {
+        editMenu.forceActiveFocus()
+        root.close()
+    }
 
 }

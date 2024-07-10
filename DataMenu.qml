@@ -61,15 +61,15 @@ Rectangle {
                         spacing: 10
                         Text {
                             id: nameTxt
-                            text: name
+                            text: "<b>Name: </b>" + name
                         }
                         Text {
                             id: typeTxt
-                            text: type
+                            text: "<b>Type: </b>" + type
                         }
                         Text {
                             id: diffTxt
-                            text: difficulty
+                            text:"<b>Difficulty: </b>" + difficulty
                         }
                     }
 
@@ -88,4 +88,13 @@ Rectangle {
         running: Backend.dataIsEmpty()
         anchors.centerIn: parent
     }
+
+    Keys.onReleased: {
+        if (event.key === Qt.Key_Back) {
+            loader.source = "Home.qml"
+            event.accepted = true
+        }
+    }
+
+    Component.onCompleted: forceActiveFocus()
 }

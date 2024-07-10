@@ -38,7 +38,7 @@ Rectangle {
                 }
 
                 Text {
-                    text: "Estimated time: " + Database.findAverage(modelData) + " minutes"
+                    text: "Estimated time: " + Backend.estimateWorkout(modelData) + " minutes"
                     anchors {
                         top: routineTxt.bottom
                         left: parent.left
@@ -96,9 +96,15 @@ Rectangle {
     //test on android
     Keys.onReleased: {
         if (event.key === Qt.Key_Back) {
-            console.log("Back button captured - wunderbar !")
+            console.log("bacl")
+            loader.source = "Home.qml"
             event.accepted = true
         }
     }
+
+    Component.onCompleted: {
+            // Ensure the window can accept key events
+            forceActiveFocus()
+        }
 
 }

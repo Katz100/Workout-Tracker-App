@@ -4,6 +4,7 @@ import "ListModelFunctions.js" as Backend
 import com.company.mydatabase
 
 Rectangle {
+    id: editMenu
     color: bgColor
     property real workoutTime: Backend.estimateWorkout(day)
 
@@ -13,6 +14,7 @@ Rectangle {
             workoutTime = Backend.estimateWorkout(day)
             var updatedWorkout = Database.findWorkout(editDialog.id)
             Backend.updateListModel(editDialog.index, updatedWorkout)
+            editMenu.forceActiveFocus()
         }
         anchors.centerIn: parent
     }
@@ -128,4 +130,12 @@ Rectangle {
         }
     }
 
+    Keys.onReleased: {
+        if (event.key === Qt.Key_Back) {
+            loader.source = "EditWorkoutMenu.qml"
+            event.accepted = true
+        }
+    }
+
+    Component.onCompleted: forceActiveFocus()
 }

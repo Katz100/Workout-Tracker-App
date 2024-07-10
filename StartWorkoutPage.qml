@@ -232,6 +232,18 @@ Rectangle {
         setsCompleted = Backend.setsCompleted
         workoutId = lm.get(Backend.currentWorkoutIndex).id
     }
+
+    Keys.onReleased: {
+        if (event.key === Qt.Key_Back) {
+            lm.clear()
+            MyTimer.resetTimer()
+            Backend.resetWorkout()
+            loader.source = "Home.qml"
+            event.accepted = true
+        }
+    }
+
+    Component.onCompleted: forceActiveFocus()
 }
 
 
