@@ -58,6 +58,8 @@ qt_add_qml_module(appWorkout-Tracker-App
         images/magnifying-glass.png
         images/icons8-plus-24.png
         audio/timer-sound.mp3
+        audio/beep-beep-2.mp3
+        audio/beep-sound-1.mp3
         QML_FILES EditDialog.qml
         QML_FILES StartWorkoutMenu.qml
         QML_FILES StartWorkoutPage.qml
