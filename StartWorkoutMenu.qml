@@ -27,6 +27,7 @@ Rectangle {
                 Text {
                     id: routineTxt
                     text: modelData
+                    font.bold: true
                     font.pixelSize: 16
                     anchors {
                         left: parent.left

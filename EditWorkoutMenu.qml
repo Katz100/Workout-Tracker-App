@@ -32,6 +32,7 @@ Rectangle {
                 id: routineTxt
                 text: modelData
                 font.pixelSize: 16
+                font.bold: true
                 anchors {
                     left: parent.left
                     top: parent.top
@@ -73,6 +74,8 @@ Rectangle {
             anchors.centerIn: parent
             source: "images/icons8-plus-24.png"
         }
+
+        onClicked: loader.source = "AddWorkoutMenu.qml"
     }
 
     /*
