@@ -9,6 +9,7 @@
 #include <QJsonObject>
 #include <QCoreApplication>
 #include <QSslSocket>
+#include "config.h"
 
 class ExerciseData : public QObject
 {
@@ -29,7 +30,7 @@ private:
     QString m_type = "&type=";
     QString m_name = "&name=";
     QString m_difficulty = "&difficulty=";
-    const QByteArray m_key = "3Vu57OOgJ/cKr7ZXmJ+3gw==7slralJ58jR54C76";
+    const QByteArray m_key = api_key.toUtf8();
     QNetworkRequest m_request;
 };
 
