@@ -60,9 +60,8 @@ MyDatabase::MyDatabase(QObject *parent)
         qDebug() << initWeights.lastError().text();
     }
 
-    //connect(this, &MyDatabase::workoutsChanged, this, &MyDatabase::printWeightsTable);
+    connect(this, &MyDatabase::workoutsChanged, this, &MyDatabase::printTable);
 
-    qDebug() << getRoutines();
 
 }
 
@@ -432,7 +431,14 @@ int MyDatabase::countSets(const QString &day)
     if(query.exec())
     {
         qDebug() << "countSets() ok";
-        return query.next() ? query.value(0).toInt() : -1;
+        if (query.next())
+        {
+            return query.value(0).toInt();
+        }
+        else
+        {
+            return -1;
+        }
     }
     else
     {

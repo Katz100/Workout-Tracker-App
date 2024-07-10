@@ -6,6 +6,7 @@ function nextSet() {
     Database.addWeight(workoutId, weightUsed.text, currentSet)
     currentSet++;
     setsCompleted++;
+    console.log(Database.countSets(day))
     if (currentSet > lm.get(currentWorkoutIndex).sets)
     {
         currentSet = 1;
@@ -92,7 +93,7 @@ function estimateWorkout(day) {
 }
 
 function isEmpty() {
-    return (lm.count == 0)
+    return (lm.count === 0)
 }
 
 function dataIsEmpty() {

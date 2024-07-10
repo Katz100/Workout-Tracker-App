@@ -127,4 +127,5 @@ Rectangle {
             font.pointSize: 14
         }
     }
+
 }

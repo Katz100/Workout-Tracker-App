@@ -46,6 +46,7 @@ Rectangle {
                 anchors.fill: parent
 
                 onClicked: {
+                    day = modelData
                     Backend.getWorkouts(modelData)
                     if(Backend.isEmpty()) {
                         workoutEmptyDialog.open()
