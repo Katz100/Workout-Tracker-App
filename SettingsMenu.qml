@@ -8,10 +8,13 @@ Rectangle {
     color: bgColor
 
 
-    RowLayout {
-
+    GridLayout {
+        rows: 2
+        columns: 2
+        columnSpacing: 10
         Text {
-            text: "Select timer sound"
+
+            text: "Timer finished sound"
             font.bold: true
             font.pixelSize: 16
         }
@@ -25,7 +28,20 @@ Rectangle {
                 settings.path = settingsModel.get(currentIndex).path
             }
         }
+
+
+        Text {
+            text: "Auto advance sets"
+            font.bold: true
+            font.pixelSize: 16
+        }
+
+        Switch {
+            checked: settings.autoAdvance
+            onToggled: settings.autoAdvance = checked
+        }
     }
+
     Label {
         id: copyright
         text: "Icons by Icons8"
