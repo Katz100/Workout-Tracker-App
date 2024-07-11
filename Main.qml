@@ -18,6 +18,7 @@ Window {
         id: settings
         property string path: "audio/timer-sound.mp3"
         property int soundIndex: 0
+        property bool autoAdvance: true
     }
 
     ListModel {

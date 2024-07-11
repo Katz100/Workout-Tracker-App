@@ -104,7 +104,7 @@ Rectangle {
                 }
 
                 Label {
-                    text: "Find Workout"
+                    text: "Find Exercise"
                     Layout.alignment: Qt.AlignVCenter
                     font.bold: true
                 }

@@ -162,7 +162,9 @@ Rectangle {
                 target: MyTimer
                 function onTimerFinished() {
                     playSound.play()
-                    Backend.nextSet()
+                    if (settings.autoAdvance) {
+                        Backend.nextSet()
+                    }
                     MyTimer.resetTimer()
                     if (Backend.isWorkoutFinished()) {
                         workoutFinishedDialog.open()

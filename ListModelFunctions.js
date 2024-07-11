@@ -6,7 +6,6 @@ function nextSet() {
     Database.addWeight(workoutId, weightUsed.text, currentSet)
     currentSet++;
     setsCompleted++;
-    console.log(Database.countSets(day))
     if (currentSet > lm.get(currentWorkoutIndex).sets)
     {
         currentSet = 1;
@@ -19,7 +18,6 @@ function previousSet() {
     if (setsCompleted !== 0) {
         setsCompleted--;
     }
-
     if (currentSet === 0)
     {
         //end of exercise but not end of first exercise

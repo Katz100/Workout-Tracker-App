@@ -76,12 +76,22 @@ Rectangle {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-
+                            instructionDialog.instructionTxt = instructions
+                            instructionDialog.exerciseNameTxt = name
+                            instructionDialog.open()
                         }
                     }
                 }
             }
         }
+    }
+
+    InstructionsDialog {
+        id: instructionDialog
+        width: parent.width * 0.8
+        height: parent.height * 0.8
+        anchors.centerIn: parent
+        onClosed: parent.forceActiveFocus()
     }
 
     BusyIndicator {

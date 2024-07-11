@@ -57,6 +57,8 @@ qt_add_qml_module(appWorkout-Tracker-App
         images/icons8-dumbell-100.png
         images/magnifying-glass.png
         images/icons8-plus-24.png
+        images/icons8-clipboard-24.png
+        images/icons8-clipboard-50.png
         audio/timer-sound.mp3
         audio/beep-beep-2.mp3
         audio/beep-sound-1.mp3
@@ -68,6 +70,7 @@ qt_add_qml_module(appWorkout-Tracker-App
         QML_FILES DataMenu.qml
         SOURCES config.h
         QML_FILES
+        QML_FILES InstructionsDialog.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
