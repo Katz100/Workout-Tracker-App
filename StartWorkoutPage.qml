@@ -6,6 +6,7 @@ import com.company.mydatabase
 import com.company.mytimer
 import QtMultimedia
 
+
 import "ListModelFunctions.js" as Backend
 Rectangle {
     color: bgColor
@@ -152,9 +153,11 @@ Rectangle {
 
             MediaPlayer {
                 id: playSound
-                source: "audio/timer-sound.mp3"
+                source: settings.path
                 audioOutput: AudioOutput {}
             }
+
+
             Connections {
                 target: MyTimer
                 function onTimerFinished() {

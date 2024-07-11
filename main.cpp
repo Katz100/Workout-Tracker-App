@@ -8,6 +8,8 @@ int main(int argc, char *argv[])
 {
 
     QGuiApplication app(argc, argv);
+    app.setOrganizationName("Katz Company");
+
     QQuickStyle::setStyle("Material");
 
     MyTimer* myTimer = new MyTimer(&app);
