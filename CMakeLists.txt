@@ -59,6 +59,8 @@ qt_add_qml_module(appWorkout-Tracker-App
         images/icons8-plus-24.png
         images/icons8-clipboard-24.png
         images/icons8-clipboard-50.png
+        images/home.png
+        images/start-workout.png
         audio/timer-sound.mp3
         audio/beep-beep-2.mp3
         audio/beep-sound-1.mp3

@@ -3,6 +3,7 @@
 MyDatabase::MyDatabase(QObject *parent)
     : QObject{parent}
 {
+
     db_connection = QSqlDatabase::addDatabase("QSQLITE");
     db_connection.setHostName("dbHost");
     db_connection.setDatabaseName("Workouts");

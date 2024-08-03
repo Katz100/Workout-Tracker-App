@@ -39,6 +39,7 @@ public slots:
     QList<QString> getRoutines();
 private:
     QSqlDatabase db_connection;
+    QSqlDatabase db_connection_test;
 };
 
 #endif // MYDATABASE_H
